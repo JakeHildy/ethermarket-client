@@ -1,0 +1,32 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+.navbar {
+  background-color: $color-navbar-background;
+  padding: 1rem 2rem;
+  box-shadow: $shadow-nav-bar;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__browse-link {
+    text-decoration: none;
+  }
+
+  &__home-text {
+    color: $color-text-dark;
+    font-weight: 500;
+    font-size: 2.2rem;
+  }
+
+  &__home-link {
+    display: flex;
+    align-items: center;
+  }
+
+  &__profile-icon {
+    width: 4rem;
+    cursor: pointer;
+  }
+}
