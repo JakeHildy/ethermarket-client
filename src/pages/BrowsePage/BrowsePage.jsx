@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import SearchField from "./../../components/atoms/SearchField/SearchField";
 
 class BrowsePage extends Component {
   render() {
     return (
       <div>
-        <h1>Browse Listings</h1>
+        <SearchField />
       </div>
     );
   }

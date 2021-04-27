@@ -1,6 +1,8 @@
 @use './variables' as *;
 @use './typography' as *;
 
+///////////////////////////////
+// RESPONSIVE BREAKPOINTS
 @mixin tablet {
   @media (min-width: 768px) {
     @content;
@@ -11,4 +13,12 @@
   @media (min-width: 1280px) {
     @content;
   }
+}
+
+///////////////////////////////
+// TYPOGRAPHY
+@mixin typo-input {
+  font-size: 1.4rem;
+  font-family: "Poppins";
+  font-weight: 400;
 }

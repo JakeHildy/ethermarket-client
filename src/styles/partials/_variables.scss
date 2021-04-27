@@ -17,6 +17,9 @@ $color-button-success: #549b65;
 $color-button-warning: #d18b2d;
 $color-button-danger: #f44336;
 
+// INPUT FIELD COLORS
+$color-input-border-selected: $color-dark-shades;
+
 // NAVBAR COLORS
 $color-navbar-background: $color-main-brand;
 $color-navbar-highlight: $color-main-brand-light;
@@ -30,3 +33,14 @@ $color-text-dark: $color-dark-shades;
 ///////////////////////////////
 // SHADOWS
 $shadow-nav-bar: 0rem 0.1rem 1rem rgba(0, 0, 0, 0.3);
+
+///////////////////////////////
+// SPACING INCREMENTS
+$extra-tiny: 0.4rem;
+$tiny: 0.8rem;
+$extra-small: 1.6rem;
+$small: 2.4rem;
+$medium: 3.2rem;
+$large: 4rem;
+$extra-large: 4.8rem;
+$huge: 5.6rem;
