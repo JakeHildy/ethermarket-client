@@ -16,5 +16,10 @@
       height: 38vw;
       width: 38vw;
     }
+
+    @include desktop {
+      height: 30vw;
+      width: 30vw;
+    }
   }
 }

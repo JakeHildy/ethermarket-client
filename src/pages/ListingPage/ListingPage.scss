@@ -4,9 +4,14 @@
 
 .listing-page {
   padding: $small $mobile-spacing;
+  max-width: $desktop-max-width;
 
   @include tablet {
     padding: $small $desktop-spacing;
+  }
+
+  @include desktop {
+    margin: 0 auto;
   }
 
   &__info-container {
@@ -29,7 +34,7 @@
     @include tablet {
       width: 50%;
       border-left: $separator-line;
-      padding: 0 $small;
+      padding: $tiny $small;
     }
   }
 
