@@ -55,6 +55,24 @@
   }
 }
 
+@mixin typo-heading-2 {
+  font-size: 3.4rem;
+  font-weight: 300;
+
+  @include desktop {
+    font-size: 3.8rem;
+  }
+}
+
+@mixin typo-heading-3 {
+  font-size: 2rem;
+  font-weight: 400;
+
+  @include desktop {
+    font-size: 2.2rem;
+  }
+}
+
 ///////////////////////////////
 // IMAGES
 @mixin figure {

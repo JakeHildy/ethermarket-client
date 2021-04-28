@@ -5,17 +5,19 @@
 .categories {
   margin-right: $large;
   &__heading {
-    font-size: 3.6rem;
-    font-weight: 300;
+    @include typo-heading-2;
     margin-bottom: 1.8rem;
   }
 
   &__list-item {
-    font-size: 2rem;
-    font-weight: 400;
+    @include typo-heading-3;
     line-height: 2.4rem;
     cursor: pointer;
     margin-bottom: $tiny;
+
+    @include desktop {
+      line-height: 2.6rem;
+    }
 
     &:hover {
       text-decoration: underline;

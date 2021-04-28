@@ -2,6 +2,13 @@
 @use './../../../styles/partials/mixins' as *;
 @use './../../../styles/partials/typography' as *;
 
-.listing-page {
-  padding: $small $mobile-spacing;
+.gallery {
+  &__figure {
+    @include figure;
+    // margin-bottom: 0.2rem;
+  }
+
+  &__img {
+    @include image;
+  }
 }
