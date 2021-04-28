@@ -4,6 +4,7 @@ import './ListingPage.scss';
 import ListingHeader from './../../components/molecules/ListingHeader/ListingHeader';
 import ListingCreatorInfo from './../../components/molecules/ListingCreatorInfo/ListingCreatorInfo';
 import ListingDetails from './../../components/molecules/ListingDetails/ListingDetails';
+import ButtonPrimary from './../../components/atoms/ButtonPrimary/ButtonPrimary';
 
 export class ListingPage extends Component {
   state = {
@@ -22,6 +23,10 @@ export class ListingPage extends Component {
     });
   };
 
+  followPost = () => {
+    console.log('follow post button clicked');
+  };
+
   render() {
     if (!this.state.listingLoaded) return null;
     return (
@@ -33,7 +38,7 @@ export class ListingPage extends Component {
           </div>
           <div className="listing-page__details">
             <ListingDetails listing={this.state.listing} />
-            <button className="listing-page__follow-button">Follow Post</button>
+            <ButtonPrimary label="Follow Post" handleClick={this.followPost} />
           </div>
         </div>
       </div>

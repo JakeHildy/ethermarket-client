@@ -1,0 +1,19 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+.button-primary {
+  border: 1px solid $color-dark-shades;
+  border-radius: 2rem;
+  background-color: $color-button-success;
+  width: 100%;
+  padding: $tiny $extra-small;
+  font-size: 1.6rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($color-button-success, 10%);
+  }
+}
