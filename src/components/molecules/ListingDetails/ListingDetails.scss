@@ -1,0 +1,27 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+.listing-details {
+  &__title {
+    @include typo-heading-3;
+    margin-bottom: $extra-tiny;
+    border-bottom: $separator-line;
+  }
+
+  &__category {
+    display: flex;
+    align-items: center;
+    margin-bottom: $tiny;
+  }
+
+  &__label {
+    @include typo-heading-4;
+    font-weight: 600;
+    margin-left: $extra-small;
+  }
+
+  &__text {
+    @include typo-paragraph;
+  }
+}

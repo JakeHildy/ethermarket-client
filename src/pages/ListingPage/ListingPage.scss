@@ -5,55 +5,30 @@
 .listing-page {
   padding: $small $mobile-spacing;
 
-  // === HEADER ===
-  &__header {
-    padding-bottom: $tiny;
-    border-bottom: $separator-line;
+  // === USER INFO ===
+  &__creator-info {
+    padding: $extra-tiny 0 $extra-small 0;
   }
 
-  &__gallery {
+  // === DETAILS ===
+  &__details {
     margin-bottom: $extra-small;
   }
 
-  &__title {
-    margin-bottom: $extra-tiny;
-    @include typo-heading-3;
-  }
-
-  &__listed-when {
-    @include typo-heading-5;
-  }
-
-  // === PRICE ===
-  &__price {
-    border-bottom: $separator-line;
-    padding: $tiny 0;
-    display: flex;
-  }
-
-  &__price-icon {
-    margin-right: $extra-small;
-    align-self: start;
-  }
-
-  &__price-container {
-  }
-
-  &__list-price {
-    @include typo-heading-4;
+  // === FOLLOW BUTTON ===
+  &__follow-button {
+    border: 1px solid $color-dark-shades;
+    border-radius: 2rem;
+    background-color: $color-button-success;
+    width: 100%;
+    padding: $tiny $extra-small;
+    font-size: 1.6rem;
     font-weight: 600;
-  }
+    transition: all 0.2s;
+    cursor: pointer;
 
-  &__local-price {
-    @include typo-heading-5;
-  }
-
-  // === USER INFO ===
-  &__user-info {
-    padding: $extra-tiny 0;
-  }
-
-  &__user-name {
-    @include typo-heading-3;
+    &:hover {
+      background-color: darken($color-button-success, 10%);
+    }
   }
 }

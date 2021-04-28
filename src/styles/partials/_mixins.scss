@@ -83,10 +83,30 @@
 }
 
 @mixin typo-heading-5 {
+  font-size: 1.2rem;
+  font-weight: 400;
+
+  @include desktop {
+    font-size: 1.3rem;
+  }
+}
+
+@mixin typo-heading-6 {
   font-size: 0.8rem;
   font-weight: 500;
   text-transform: uppercase;
   color: $color-main-brand;
+
+  @include desktop {
+    font-size: 1rem;
+  }
+}
+
+@mixin typo-paragraph {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  font-weight: 400;
+  color: $color-dark-shades;
 
   @include desktop {
     font-size: 1rem;

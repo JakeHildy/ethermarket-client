@@ -1,0 +1,44 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+.listing-header {
+  border-bottom: $separator-line;
+
+  &__gallery {
+    margin-bottom: $extra-small;
+  }
+
+  &__title {
+    margin-bottom: $extra-tiny;
+    @include typo-heading-3;
+  }
+
+  &__listed-when {
+    @include typo-heading-6;
+    margin-bottom: $tiny;
+  }
+
+  &__price {
+    border-top: $separator-line;
+    padding: $tiny 0;
+    display: flex;
+  }
+
+  &__price-icon {
+    margin-right: $extra-small;
+    align-self: start;
+  }
+
+  &__price-container {
+  }
+
+  &__list-price {
+    @include typo-heading-4;
+    font-weight: 600;
+  }
+
+  &__local-price {
+    @include typo-heading-5;
+  }
+}

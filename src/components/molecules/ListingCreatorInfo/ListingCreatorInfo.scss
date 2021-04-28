@@ -2,14 +2,15 @@
 @use './../../../styles/partials/mixins' as *;
 @use './../../../styles/partials/typography' as *;
 
-// === MAP ===
-.map {
-  width: 100%;
+.listing-creator-info {
+  &__user-name {
+    @include typo-heading-3;
+  }
 
-  &__container {
-    border-radius: 5px;
-    height: 60vw;
-    width: 91.4vw;
-    box-shadow: $shadow-img-gallery;
+  &__star-rating {
+    margin-bottom: $tiny;
+  }
+
+  &__map {
   }
 }
