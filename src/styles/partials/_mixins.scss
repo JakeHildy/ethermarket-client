@@ -19,7 +19,7 @@
 // TYPOGRAPHY
 @mixin typo-input {
   font-size: 1.4rem;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-weight: 400;
 
   @include tablet {
@@ -70,6 +70,26 @@
 
   @include desktop {
     font-size: 2.2rem;
+  }
+}
+
+@mixin typo-heading-4 {
+  font-size: 1.4rem;
+  font-weight: 400;
+
+  @include desktop {
+    font-size: 1.6rem;
+  }
+}
+
+@mixin typo-heading-5 {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: $color-main-brand;
+
+  @include desktop {
+    font-size: 1rem;
   }
 }
 

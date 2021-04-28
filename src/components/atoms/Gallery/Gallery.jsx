@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import './Gallery.scss';
 
 export class Gallery extends Component {
   render() {

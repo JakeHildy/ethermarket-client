@@ -33,6 +33,7 @@ $color-text-dark: $color-dark-shades;
 ///////////////////////////////
 // SHADOWS
 $shadow-nav-bar: 0rem 0.1rem 1rem rgba(0, 0, 0, 0.3);
+$shadow-img-gallery: 0rem 0.1rem 1rem rgba(0, 0, 0, 0.3);
 
 ///////////////////////////////
 // SPACING INCREMENTS
@@ -51,3 +52,7 @@ $desktop-spacing: 2.4rem;
 ///////////////////////////////
 // WIDTHS
 $desktop-max-width: 120rem;
+
+//////////////////////////////////////
+// SEPARATORS
+$separator-line: 1px solid $color-light-accent;

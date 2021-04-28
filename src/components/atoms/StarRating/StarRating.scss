@@ -1,0 +1,9 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+.star-rating {
+  &__star {
+    width: 1.8rem;
+  }
+}

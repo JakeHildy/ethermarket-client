@@ -3,9 +3,13 @@
 @use './../../../styles/partials/typography' as *;
 
 .gallery {
+  width: 100%;
+  box-shadow: $shadow-img-gallery;
+  overflow: hidden;
+  border-radius: 5px;
+
   &__figure {
     @include figure;
-    // margin-bottom: 0.2rem;
   }
 
   &__img {
