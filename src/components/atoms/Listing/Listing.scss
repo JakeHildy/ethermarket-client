@@ -17,11 +17,10 @@
   }
 
   &__label {
-    font-size: 1.6rem;
-    font-weight: 400;
+    @include typo-listing-label;
   }
 
   &__price {
-    font-size: 1.4rem;
+    @include typo-listing-price;
   }
 }

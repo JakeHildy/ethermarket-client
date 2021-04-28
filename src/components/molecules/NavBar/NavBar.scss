@@ -23,13 +23,7 @@
   }
 
   &__home-text {
-    color: $color-text-dark;
-    font-weight: 500;
-    font-size: 2.2rem;
-
-    @include tablet {
-      font-size: 2.6rem;
-    }
+    @include typo-navbar-home;
   }
 
   &__home-link {

@@ -21,6 +21,38 @@
   font-size: 1.4rem;
   font-family: "Poppins";
   font-weight: 400;
+
+  @include tablet {
+    font-size: 1.8rem;
+  }
+}
+
+@mixin typo-navbar-home {
+  color: $color-text-dark;
+  font-weight: 500;
+  font-size: 2.2rem;
+
+  @include tablet {
+    font-size: 2.6rem;
+  }
+}
+
+@mixin typo-listing-label {
+  font-size: 1.6rem;
+  font-weight: 400;
+
+  @include tablet {
+    font-size: 2rem;
+  }
+}
+
+@mixin typo-listing-price {
+  font-size: 1.4rem;
+  font-weight: 400;
+
+  @include tablet {
+    font-size: 1.6rem;
+  }
 }
 
 ///////////////////////////////

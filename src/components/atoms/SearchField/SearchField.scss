@@ -14,10 +14,9 @@
     border-radius: 20rem;
     border: 1px solid $color-dark-accent;
 
-    // @include tablet {
-    //   height: 3.8rem;
-    //   max-width: 24vw;
-    // }
+    @include tablet {
+      height: 3.8rem;
+    }
 
     &:active,
     &:focus {
@@ -32,8 +31,8 @@
     right: $extra-small;
     cursor: pointer;
 
-    // @include tablet {
-    //   top: 0.7rem;
-    // }
+    @include tablet {
+      top: 0.7rem;
+    }
   }
 }
