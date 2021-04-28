@@ -1,0 +1,24 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+.listing {
+  margin-bottom: $medium;
+  &__figure {
+    @include figure;
+    margin-bottom: 0.2rem;
+  }
+
+  &__img {
+    @include image;
+  }
+
+  &__label {
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+
+  &__price {
+    font-size: 1.4rem;
+  }
+}

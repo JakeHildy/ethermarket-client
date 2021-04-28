@@ -22,3 +22,16 @@
   font-family: "Poppins";
   font-weight: 400;
 }
+
+///////////////////////////////
+// IMAGES
+@mixin figure {
+  width: 100%;
+}
+@mixin image {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 5px;
+}

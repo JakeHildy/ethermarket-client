@@ -1,0 +1,19 @@
+@use './../../styles/partials/variables' as *;
+@use './../../styles/partials/mixins' as *;
+@use './../../styles/partials/typography' as *;
+
+.browse-page {
+  padding: $small $extra-small;
+
+  &__search-bar {
+    margin-bottom: $medium;
+  }
+
+  &__listings-container {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: $extra-small;
+  }
+}
