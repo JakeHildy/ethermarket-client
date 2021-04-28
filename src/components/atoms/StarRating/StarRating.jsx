@@ -8,9 +8,6 @@ function StarRating({ rating }) {
   const starLength = 5;
   const starArray = [];
   for (let i = 1; i <= starLength; i++) {
-    console.log('i', i);
-    console.log('i & rating', i % rating);
-
     if (rating - i >= 0) starArray.push(FullStar);
     else if (rating - i <= 0 && rating - i > -1) starArray.push(HalfStar);
     else starArray.push(EmptyStar);

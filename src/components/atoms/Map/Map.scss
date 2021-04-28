@@ -1,0 +1,15 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+// === MAP ===
+.map {
+  width: 100%;
+
+  &__container {
+    border-radius: 5px;
+    height: 30rem;
+    width: 34.3rem;
+    box-shadow: $shadow-img-gallery;
+  }
+}

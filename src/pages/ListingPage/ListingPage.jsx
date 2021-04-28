@@ -4,6 +4,7 @@ import './ListingPage.scss';
 import CashIcon from './../../assets/icons/local_atm_black_24dp.svg';
 import Gallery from './../../components/atoms/Gallery/Gallery';
 import StarRating from './../../components/atoms/StarRating/StarRating';
+import Map from './../../components/atoms/Map/Map';
 
 export class ListingPage extends Component {
   state = {
@@ -47,6 +48,7 @@ export class ListingPage extends Component {
         <div className="listing-page__user-info">
           <h2 className="listing-page__user-name">Steve Dawson</h2>
           <StarRating rating={2.5} />
+          <Map lat={this.state.listing.location.lat} long={this.state.listing.location.long} />
         </div>
       </div>
     );
