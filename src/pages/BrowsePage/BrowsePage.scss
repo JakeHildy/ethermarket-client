@@ -3,13 +3,14 @@
 @use './../../styles/partials/typography' as *;
 
 .browse-page {
-  padding: $small $extra-small;
+  padding: $small $mobile-spacing;
   display: flex;
   flex-direction: column;
-  max-width: 120rem;
+  max-width: $desktop-max-width;
 
   @include desktop {
     margin: 0 auto;
+    padding: $small $desktop-spacing;
   }
 
   &__search-bar {
