@@ -4,6 +4,9 @@
 
 .listing {
   margin-bottom: $medium;
+  text-decoration: none;
+  color: inherit;
+
   &__figure {
     @include figure;
     margin-bottom: 0.2rem;

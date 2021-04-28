@@ -4,16 +4,36 @@
 
 .browse-page {
   padding: $small $extra-small;
+  display: flex;
+  flex-direction: column;
+  max-width: 120rem;
+
+  @include desktop {
+    margin: 0 auto;
+  }
 
   &__search-bar {
     margin-bottom: $medium;
   }
 
-  &__listings-container {
-    width: 100%;
+  &__container {
+    display: flex;
+  }
 
+  &__listings {
+    margin-top: $tiny;
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: $extra-small;
+  }
+
+  &__categories {
+    display: none;
+    width: 40%;
+
+    @include tablet {
+      display: block;
+    }
   }
 }
