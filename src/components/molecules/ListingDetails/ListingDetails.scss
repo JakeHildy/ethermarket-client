@@ -3,10 +3,21 @@
 @use './../../../styles/partials/typography' as *;
 
 .listing-details {
+  margin-bottom: $extra-small;
+
+  @include tablet {
+    margin-bottom: $small;
+  }
+
   &__title {
     @include typo-heading-3;
     margin-bottom: $extra-tiny;
     border-bottom: $separator-line;
+
+    @include tablet {
+      border-bottom: none;
+      margin-bottom: $small;
+    }
   }
 
   &__category {

@@ -12,9 +12,11 @@
     justify-content: space-between;
     align-items: center;
     max-width: $desktop-max-width;
+    @include tablet {
+      padding: 1rem $desktop-spacing;
+    }
     @include desktop {
       margin: 0 auto;
-      padding: 1rem $desktop-spacing;
     }
   }
 

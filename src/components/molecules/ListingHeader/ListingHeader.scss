@@ -7,6 +7,26 @@
 
   &__gallery {
     margin-bottom: $extra-small;
+
+    @include tablet {
+      max-width: 60rem;
+      margin: 0 auto;
+      margin-bottom: $small;
+    }
+  }
+
+  &__description {
+    @include tablet {
+      display: flex;
+      border-top: $separator-line;
+      padding: $tiny 0;
+    }
+  }
+
+  &__title-container {
+    @include tablet {
+      width: 50%;
+    }
   }
 
   &__title {
@@ -23,6 +43,10 @@
     border-top: $separator-line;
     padding: $tiny 0;
     display: flex;
+
+    @include tablet {
+      border-top: none;
+    }
   }
 
   &__price-icon {

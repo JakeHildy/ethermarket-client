@@ -7,7 +7,7 @@ export class Gallery extends Component {
     return (
       <div className="gallery">
         <figure className="gallery__figure">
-          <img src={images[0].url} alt="Image 1" className="gallery__img" />
+          <img src={images[0].url} alt="Gallery" className="gallery__img" />
         </figure>
       </div>
     );

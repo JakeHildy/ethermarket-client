@@ -11,5 +11,10 @@
     height: 60vw;
     width: 91.4vw;
     box-shadow: $shadow-img-gallery;
+
+    @include tablet {
+      height: 38vw;
+      width: 38vw;
+    }
   }
 }

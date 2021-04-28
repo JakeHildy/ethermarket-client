@@ -10,7 +10,6 @@ function ListingDetails({ listing }) {
         <img src={BikeIcon} alt="Category Logo" />
         <h3 className="listing-details__label">Sporting</h3>
       </div>
-
       <p className="listing-details__text">{listing.description}</p>
     </div>
   );

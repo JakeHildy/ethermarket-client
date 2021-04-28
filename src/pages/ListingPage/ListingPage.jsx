@@ -27,13 +27,15 @@ export class ListingPage extends Component {
     return (
       <div className="listing-page">
         <ListingHeader listing={this.state.listing} conversionRate={this.state.conversionRate} />
-        <div className="listing-page__creator-info">
-          <ListingCreatorInfo listing={this.state.listing} />
+        <div className="listing-page__info-container">
+          <div className="listing-page__creator-info">
+            <ListingCreatorInfo listing={this.state.listing} />
+          </div>
+          <div className="listing-page__details">
+            <ListingDetails listing={this.state.listing} />
+            <button className="listing-page__follow-button">Follow Post</button>
+          </div>
         </div>
-        <div className="listing-page__details">
-          <ListingDetails listing={this.state.listing} />
-        </div>
-        <button className="listing-page__follow-button">Follow Post</button>
       </div>
     );
   }

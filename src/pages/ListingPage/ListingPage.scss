@@ -5,6 +5,18 @@
 .listing-page {
   padding: $small $mobile-spacing;
 
+  @include tablet {
+    padding: $small $desktop-spacing;
+  }
+
+  &__info-container {
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      padding: $small 0;
+    }
+  }
+
   // === USER INFO ===
   &__creator-info {
     padding: $extra-tiny 0 $extra-small 0;
@@ -13,6 +25,12 @@
   // === DETAILS ===
   &__details {
     margin-bottom: $extra-small;
+
+    @include tablet {
+      width: 50%;
+      border-left: $separator-line;
+      padding: 0 $small;
+    }
   }
 
   // === FOLLOW BUTTON ===
