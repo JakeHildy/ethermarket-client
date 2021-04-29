@@ -7,7 +7,7 @@ function ListingHeader({ listing, conversionRate }) {
   return (
     <div className="listing-header">
       <div className="listing-header__gallery">
-        <Gallery images={listing} />
+        <Gallery images={listing.images} />
       </div>
       <div className="listing-header__description">
         <div className="listing-header__title-container">

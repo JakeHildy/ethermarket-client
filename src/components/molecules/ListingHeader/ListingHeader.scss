@@ -9,7 +9,7 @@
     margin-bottom: $extra-small;
 
     @include tablet {
-      max-width: 60rem;
+      // max-width: 60rem;
       margin: 0 auto;
       margin-bottom: $small;
     }
