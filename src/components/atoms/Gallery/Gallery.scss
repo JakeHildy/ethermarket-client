@@ -16,36 +16,52 @@
     max-width: 80%;
   }
   @include desktop {
-    max-width: 60%;
+    height: min(60vw, 75rem);
+    // max-width: 90%;
   }
 
   &__slide {
     position: absolute;
     top: 0;
+
     width: 100%;
-    // height: 60vw;
 
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.6s cubic-bezier(0.76, 0.26, 0.24, 0.83);
+
+    @include tablet {
+      height: min(60vw, 75rem);
+    }
+    // @include desktop {
+    //   height: min(60vw, 75rem);
+    // }
   }
 
   &__img {
     @include image;
-    height: 60rem;
+    height: 70vw;
+
+    @include tablet {
+      height: min(60vw, 75rem);
+    }
+    // @include desktop {
+    //   height: min(60vw, 75rem);
+    // }
   }
 
   &__back-button,
   &__next-button {
     position: absolute;
-    top: 17vw;
-    width: 7vw;
+    bottom: 50%;
+    transform: translateY(50%);
+    width: min(6vw, 4rem);
     cursor: pointer;
     transition: 0.2s;
-    &:hover {
-      transform: scale(1.1);
-    }
+    // &:hover {
+    //   transform: translateY(0.3rem);
+    // }
   }
 
   &__back-button {
@@ -53,12 +69,12 @@
   }
 
   &__next-button {
-    right: 1rem;
+    right: 0rem;
   }
 
   &__dots {
     position: absolute;
-    top: 37vw;
+    bottom: 6%;
     left: 50%;
     transform: translateX(-50%);
     display: flex;

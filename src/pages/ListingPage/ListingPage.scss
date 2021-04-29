@@ -35,6 +35,9 @@
       width: 50%;
       border-left: $separator-line;
       padding: $tiny $small;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
   }
 }
