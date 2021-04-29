@@ -1,0 +1,20 @@
+@use './../../styles/partials/variables' as *;
+@use './../../styles/partials/mixins' as *;
+@use './../../styles/partials/typography' as *;
+
+.create-listing-page {
+  padding: $small $mobile-spacing;
+  max-width: $desktop-max-width;
+
+  @include tablet {
+    padding: $small $desktop-spacing;
+  }
+
+  @include desktop {
+    margin: 0 auto;
+  }
+
+  &__title {
+    text-align: center;
+  }
+}
