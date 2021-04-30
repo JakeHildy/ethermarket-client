@@ -6,6 +6,7 @@ import DropDownField from './../../components/atoms/DropDownField/DropDownField'
 import ButtonPrimary from './../../components/atoms/ButtonPrimary/ButtonPrimary';
 import ButtonSecondary from './../../components/atoms/ButtonSecondary/ButtonSecondary';
 import AddPicsIcon from './../../assets/icons/add_photo_alternate_black_24dp.svg';
+import axios from 'axios';
 
 export class CreateListingsPage extends Component {
   state = {
@@ -17,11 +18,28 @@ export class CreateListingsPage extends Component {
     location: '',
     images: [],
     selectedFile: null,
+    imgsrc: null,
   };
 
   handleChange = (e) => {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onPhotoChangeHandler = (e) => {
+    this.setState({ selectedFile: e.target.files[0] });
+  };
+
+  onPhotoUploadHandler = (e) => {
+    const UPLOAD_EP = `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_UPLOAD_EP}`;
+    const data = new FormData();
+    data.append('file', this.state.selectedFile);
+    axios.post(`${UPLOAD_EP}`, data).then((res) => {
+      console.log(res.data.filename);
+      this.setState({
+        imgsrc: `${process.env.REACT_APP_BACKEND_EP}/${res.data.filename}`,
+      });
+    });
   };
 
   handleCreateListing = (e) => {
@@ -39,8 +57,18 @@ export class CreateListingsPage extends Component {
       <div className="create-listing-page">
         <h1 className="create-listing-page__title">Create Listing</h1>
         <div className="create-listing-page__add-photos">
-          <img className="create-listing-page__add-photos-icon" src={AddPicsIcon} alt="Add photos" />
-          <p className="create-listing-page__add-photos-label">Add Photos</p>
+          <input
+            type="file"
+            name="file"
+            onChange={this.onPhotoChangeHandler}
+            className="create-listing-page__add-photos-label"
+          ></input>
+          <img
+            onClick={this.onPhotoUploadHandler}
+            className="create-listing-page__add-photos-icon"
+            src={AddPicsIcon}
+            alt="Add photos"
+          />
         </div>
         <InputField
           name="title"

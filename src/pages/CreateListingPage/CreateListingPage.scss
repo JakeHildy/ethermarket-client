@@ -21,6 +21,7 @@
     height: 40vw;
     margin-bottom: $extra-small;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     cursor: pointer;
@@ -36,6 +37,7 @@
 
   &__add-photos-label {
     font-size: 1.2rem;
+    margin-bottom: $extra-small;
 
     @include tablet {
       font-size: 1.6rem;
