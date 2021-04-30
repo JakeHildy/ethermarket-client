@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './CreateListingPage.scss';
 import InputField from './../../components/atoms/InputField/InputField';
+import TextArea from './../../components/atoms/TextArea/TextArea';
 import DropDownField from './../../components/atoms/DropDownField/DropDownField';
 
 export class CreateListingsPage extends Component {
@@ -73,6 +74,14 @@ export class CreateListingsPage extends Component {
           label="Location"
           value={this.state.location}
           placeholder="Enter Postal Code..."
+          onChange={this.handleChange}
+          error=""
+        />
+        <TextArea
+          name="description"
+          label="Description"
+          value={this.state.description}
+          placeholder="Enter Description..."
           onChange={this.handleChange}
           error=""
         />

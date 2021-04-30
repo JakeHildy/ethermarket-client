@@ -3,38 +3,24 @@
 @use './../../../styles/partials/typography' as *;
 @use './../../../styles/partials/error' as *;
 
-.drop-down-field {
-  margin-bottom: $tiny;
-  position: relative;
-
-  &:after {
-    content: url('../../../assets/icons/arrow_drop_down-24px.svg');
-    position: absolute;
-    right: 1.5rem;
-    top: 2.5rem;
-    cursor: pointer;
-
-    @include tablet {
-      top: 2.7rem;
-    }
-  }
-
+.text-area {
+  margin-bottom: $extra-small;
   &__input {
     background: white;
     border: 0.1rem solid $color-light-accent;
     box-sizing: border-box;
     border-radius: 2rem;
-    padding: $tiny 1.6rem;
+    font-family: inherit;
+    font-size: 1.3rem;
+    font-weight: normal;
+    padding: $tiny $extra-small;
     width: 100%;
-    height: 3.6rem;
+    height: 32vw;
     outline: none;
-    cursor: pointer;
-
-    // remove default arrow:
-    appearance: none;
+    resize: none;
 
     @include tablet {
-      height: 3.8rem;
+      height: 15.6vw;
       font-size: 1.4rem;
     }
 
@@ -42,14 +28,10 @@
     &:focus {
       border-color: $color-main-brand;
     }
-
-    &::placeholder {
-      color: $color-dark-accent;
-    }
   }
 
   &__error {
-    @extend .drop-down-field__input;
+    @extend .text-area__input;
     border: 0.1rem solid $color-button-warning;
   }
 
