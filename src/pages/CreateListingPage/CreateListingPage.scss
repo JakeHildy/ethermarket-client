@@ -14,8 +14,37 @@
     margin: 0 auto;
   }
 
+  &__add-photos {
+    border: 0.1rem solid $color-light-accent;
+    border-radius: 2rem;
+    width: 100%;
+    height: 40vw;
+    margin-bottom: $extra-small;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__add-photos-icon {
+    margin-right: $extra-small;
+
+    @include tablet {
+      width: 3.6rem;
+    }
+  }
+
+  &__add-photos-label {
+    font-size: 1.2rem;
+
+    @include tablet {
+      font-size: 1.6rem;
+    }
+  }
+
   &__title {
     text-align: center;
+    margin-bottom: $extra-small;
   }
 
   &__currency-input {
@@ -28,6 +57,18 @@
   }
 
   &__currency {
+    flex: 1;
+  }
+
+  &__buttons {
+    display: flex;
+  }
+
+  &__button-cancel {
+    margin-right: $small;
+    flex: 1;
+  }
+  &__button-create {
     flex: 1;
   }
 }

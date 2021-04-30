@@ -1,0 +1,21 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+.button-secondary {
+  border: 1px solid $color-dark-shades;
+  border-radius: 2rem;
+  background-color: $color-light-shades;
+  width: 100%;
+  padding: $tiny $extra-small;
+  font-size: 1.6rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($color-light-shades, 10%);
+    box-shadow: $shadow-img-gallery;
+    transform: translateY(-0.1rem);
+  }
+}

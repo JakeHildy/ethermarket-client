@@ -3,6 +3,9 @@ import './CreateListingPage.scss';
 import InputField from './../../components/atoms/InputField/InputField';
 import TextArea from './../../components/atoms/TextArea/TextArea';
 import DropDownField from './../../components/atoms/DropDownField/DropDownField';
+import ButtonPrimary from './../../components/atoms/ButtonPrimary/ButtonPrimary';
+import ButtonSecondary from './../../components/atoms/ButtonSecondary/ButtonSecondary';
+import AddPicsIcon from './../../assets/icons/add_photo_alternate_black_24dp.svg';
 
 export class CreateListingsPage extends Component {
   state = {
@@ -12,6 +15,8 @@ export class CreateListingsPage extends Component {
     category: 'Miscellaneous',
     condition: '',
     location: '',
+    images: [],
+    selectedFile: null,
   };
 
   handleChange = (e) => {
@@ -19,10 +24,24 @@ export class CreateListingsPage extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  handleCreateListing = (e) => {
+    e.preventDefault();
+    console.log('Create');
+  };
+
+  handleCancel = (e) => {
+    e.preventDefault();
+    console.log('Cancel');
+  };
+
   render() {
     return (
       <div className="create-listing-page">
         <h1 className="create-listing-page__title">Create Listing</h1>
+        <div className="create-listing-page__add-photos">
+          <img className="create-listing-page__add-photos-icon" src={AddPicsIcon} alt="Add photos" />
+          <p className="create-listing-page__add-photos-label">Add Photos</p>
+        </div>
         <InputField
           name="title"
           label="Title"
@@ -85,6 +104,14 @@ export class CreateListingsPage extends Component {
           onChange={this.handleChange}
           error=""
         />
+        <div className="create-listing-page__buttons">
+          <div className="create-listing-page__button-cancel">
+            <ButtonSecondary label="Cancel" handleClick={this.handleCancel} />
+          </div>
+          <div className="create-listing-page__button-create">
+            <ButtonPrimary label="Create" handleClick={this.handleCreateListing} />
+          </div>
+        </div>
       </div>
     );
   }
