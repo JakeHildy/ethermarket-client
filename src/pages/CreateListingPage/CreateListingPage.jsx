@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import './CreateListingPage.scss';
 import InputField from './../../components/atoms/InputField/InputField';
+import DropDownField from './../../components/atoms/DropDownField/DropDownField';
 
 export class CreateListingsPage extends Component {
   state = {
     title: '',
     price: '',
+    listCurrency: 'ETH',
+    category: 'Miscellaneous',
+    condition: '',
+    location: '',
   };
 
   handleChange = (e) => {
@@ -18,16 +23,56 @@ export class CreateListingsPage extends Component {
       <div className="create-listing-page">
         <h1 className="create-listing-page__title">Create Listing</h1>
         <InputField
+          name="title"
           label="Title"
           value={this.state.title}
           placeholder="Enter Title..."
           onChange={this.handleChange}
           error=""
         />
+        <div className="create-listing-page__currency-input">
+          <div className="create-listing-page__amount">
+            <InputField
+              name="price"
+              label="Price"
+              value={this.state.price}
+              placeholder="Enter Price..."
+              onChange={this.handleChange}
+              error=""
+            />
+          </div>
+          <div className="create-listing-page__currency">
+            <DropDownField
+              name="listCurrency"
+              label="Currency"
+              options={['ETH', 'BTC']}
+              value={this.state.listCurrency}
+              onChange={this.handleChange}
+              error=""
+            />
+          </div>
+        </div>
+        <DropDownField
+          name="category"
+          label="Category"
+          options={['Miscellaneous', 'Home', 'Clothing', 'Electronics', 'Hobbies', 'Entertainment', 'Sporting']}
+          value={this.state.category}
+          onChange={this.handleChange}
+          error=""
+        />
         <InputField
-          label="Price"
-          value={this.state.price}
-          placeholder="Enter Price..."
+          name="condition"
+          label="Condition"
+          value={this.state.condition}
+          placeholder="Enter Condition..."
+          onChange={this.handleChange}
+          error=""
+        />
+        <InputField
+          name="location"
+          label="Location"
+          value={this.state.location}
+          placeholder="Enter Postal Code..."
           onChange={this.handleChange}
           error=""
         />

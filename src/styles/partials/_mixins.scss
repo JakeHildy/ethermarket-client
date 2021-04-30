@@ -27,6 +27,19 @@
   }
 }
 
+@mixin typo-input-field-label {
+  display: block;
+  margin-bottom: $extra-tiny;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: $color-light-accent;
+
+  @include tablet {
+    font-size: 1.4rem;
+  }
+}
+
 @mixin typo-navbar-home {
   color: $color-text-dark;
   font-weight: 500;

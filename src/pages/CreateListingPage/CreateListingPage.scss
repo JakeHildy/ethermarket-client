@@ -17,4 +17,17 @@
   &__title {
     text-align: center;
   }
+
+  &__currency-input {
+    display: flex;
+  }
+
+  &__amount {
+    margin-right: $tiny;
+    width: 60%;
+  }
+
+  &__currency {
+    flex: 1;
+  }
 }
