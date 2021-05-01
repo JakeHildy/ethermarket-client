@@ -24,12 +24,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
+
+    @include tablet {
+      padding: $small;
+    }
   }
 
   &__add-photos-label {
     font-size: 1.2rem;
     margin-bottom: $extra-small;
+    cursor: pointer;
 
     @include tablet {
       font-size: 1.6rem;
@@ -39,6 +43,7 @@
   &__add-photos-icon {
     margin-right: $extra-small;
     margin-bottom: $extra-small;
+    cursor: pointer;
 
     @include tablet {
       width: 3.6rem;
@@ -53,6 +58,14 @@
     grid-gap: $extra-small;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: fit-content;
+
+    @include tablet {
+      padding: $small 0;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include desktop {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 
   &__upload-figure {
@@ -72,6 +85,34 @@
     width: 3rem;
     cursor: pointer;
     filter: sepia(60%) saturate(100) hue-rotate(-90deg) contrast(110%);
+  }
+
+  /////////////////////////////////////////
+  // === LOWER HALF ===
+
+  &__container-bottom {
+    @include tablet {
+      display: flex;
+      padding: $small 0;
+    }
+  }
+
+  &__container-bottom-left {
+    @include tablet {
+      padding: 0 $small 0 0;
+      width: 50%;
+      border-right: $separator-line;
+    }
+  }
+
+  &__container-bottom-right {
+    @include tablet {
+      padding: 0 0 0 $small;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
   }
 
   &__title {
@@ -94,6 +135,9 @@
 
   &__buttons {
     display: flex;
+    @include tablet {
+      margin-bottom: $extra-small;
+    }
   }
 
   &__button-cancel {

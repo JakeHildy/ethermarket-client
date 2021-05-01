@@ -1,24 +1,17 @@
-import React, { Component } from "react";
-import axios from "axios";
-import "./BrowsePage.scss";
-import SearchField from "./../../components/atoms/SearchField/SearchField";
-import Listing from "./../../components/atoms/Listing/Listing";
-import Categories from "./../../components/atoms/Categories/Categories";
+import React, { Component } from 'react';
+import axios from 'axios';
+import './BrowsePage.scss';
+import SearchField from './../../components/atoms/SearchField/SearchField';
+import Listing from './../../components/atoms/Listing/Listing';
+import Categories from './../../components/atoms/Categories/Categories';
 
 class BrowsePage extends Component {
   state = {
-    searchStr: "",
+    searchStr: '',
     listings: [],
     listingsLoaded: false,
-    categorySort: "",
-    categories: [
-      "Home & Garden",
-      "Clothing",
-      "Electronics",
-      "Hobbies",
-      "Entertainment",
-      "Sporting Goods",
-    ],
+    categorySort: '',
+    categories: ['Home & Garden', 'Clothing', 'Electronics', 'Hobbies', 'Entertainment', 'Sporting Goods'],
   };
 
   componentDidMount = () => {
@@ -46,18 +39,11 @@ class BrowsePage extends Component {
     return (
       <div className="browse-page">
         <div className="browse-page__search-bar">
-          <SearchField
-            name="searchStr"
-            value={this.state.searchStr}
-            onChange={this.handleChange}
-          />
+          <SearchField name="searchStr" value={this.state.searchStr} onChange={this.handleChange} />
         </div>
         <div className="browse-page__container">
           <div className="browse-page__categories">
-            <Categories
-              categories={this.state.categories}
-              handleChange={this.handleCategoryChange}
-            />
+            <Categories categories={this.state.categories} handleChange={this.handleCategoryChange} />
           </div>
           <div className="browse-page__listings">
             {this.state.listings.map((listing) => (
