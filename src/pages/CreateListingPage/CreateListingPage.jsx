@@ -18,7 +18,6 @@ export class CreateListingsPage extends Component {
     location: '',
     images: [],
     selectedFile: null,
-    imgsrc: null,
   };
 
   handleChange = (e) => {
@@ -36,8 +35,10 @@ export class CreateListingsPage extends Component {
     data.append('file', this.state.selectedFile);
     axios.post(`${UPLOAD_EP}`, data).then((res) => {
       console.log(res.data.filename);
+      const images = [...this.state.images];
+      images.push(`${process.env.REACT_APP_BACKEND_EP}/${res.data.filename}`);
       this.setState({
-        imgsrc: `${process.env.REACT_APP_BACKEND_EP}/${res.data.filename}`,
+        images,
       });
     });
   };
