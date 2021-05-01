@@ -16,23 +16,15 @@
 
   &__add-photos {
     border: 0.1rem solid $color-light-accent;
+    padding: $extra-small;
     border-radius: 2rem;
     width: 100%;
-    height: 40vw;
     margin-bottom: $extra-small;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-  }
-
-  &__add-photos-icon {
-    margin-right: $extra-small;
-
-    @include tablet {
-      width: 3.6rem;
-    }
   }
 
   &__add-photos-label {
@@ -42,6 +34,44 @@
     @include tablet {
       font-size: 1.6rem;
     }
+  }
+
+  &__add-photos-icon {
+    margin-right: $extra-small;
+    margin-bottom: $extra-small;
+
+    @include tablet {
+      width: 3.6rem;
+    }
+  }
+
+  &__upload-images {
+    padding: $extra-small 0;
+    border-top: $separator-line;
+    width: 100%;
+    display: grid;
+    grid-gap: $extra-small;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: fit-content;
+  }
+
+  &__upload-figure {
+    @include figure;
+    position: relative;
+  }
+
+  &__upload-image {
+    @include image;
+  }
+
+  &__delete-image {
+    position: absolute;
+    z-index: 5;
+    top: -1rem;
+    right: -1rem;
+    width: 3rem;
+    cursor: pointer;
+    filter: sepia(60%) saturate(100) hue-rotate(-90deg) contrast(110%);
   }
 
   &__title {

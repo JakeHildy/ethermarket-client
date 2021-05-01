@@ -6,7 +6,9 @@ import DropDownField from './../../components/atoms/DropDownField/DropDownField'
 import ButtonPrimary from './../../components/atoms/ButtonPrimary/ButtonPrimary';
 import ButtonSecondary from './../../components/atoms/ButtonSecondary/ButtonSecondary';
 import AddPicsIcon from './../../assets/icons/add_photo_alternate_black_24dp.svg';
+import DeleteIcon from './../../assets/icons/delete_forever_white_24dp.svg';
 import axios from 'axios';
+const { v4: uuidv4 } = require('uuid');
 
 export class CreateListingsPage extends Component {
   state = {
@@ -34,7 +36,6 @@ export class CreateListingsPage extends Component {
     const data = new FormData();
     data.append('file', this.state.selectedFile);
     axios.post(`${UPLOAD_EP}`, data).then((res) => {
-      console.log(res.data.filename);
       const images = [...this.state.images];
       images.push(`${process.env.REACT_APP_BACKEND_EP}/${res.data.filename}`);
       this.setState({
@@ -51,6 +52,14 @@ export class CreateListingsPage extends Component {
   handleCancel = (e) => {
     e.preventDefault();
     console.log('Cancel');
+  };
+
+  handleDeleteImage = (e) => {
+    e.preventDefault();
+    const deleteIndex = e.target.dataset.index;
+    const images = [...this.state.images];
+    images.splice(deleteIndex, 1);
+    this.setState({ images });
   };
 
   render() {
@@ -70,6 +79,22 @@ export class CreateListingsPage extends Component {
             src={AddPicsIcon}
             alt="Add photos"
           />
+          <div className="create-listing-page__upload-images">
+            {this.state.images.map((image, i) => {
+              return (
+                <figure key={uuidv4()} className="create-listing-page__upload-figure">
+                  <img className="create-listing-page__upload-image" src={this.state.images[i]} alt="image-1" />
+                  <img
+                    data-index={i}
+                    onClick={this.handleDeleteImage}
+                    src={DeleteIcon}
+                    alt="Delete Image"
+                    className="create-listing-page__delete-image"
+                  />
+                </figure>
+              );
+            })}
+          </div>
         </div>
         <InputField
           name="title"
