@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import BackArrow from './../../../assets/icons/arrow_back_ios_black_24dp.svg';
 import NextArrow from './../../../assets/icons/arrow_forward_ios_black_24dp.svg';
 import './Gallery.scss';
+const { v4: uuidv4 } = require('uuid');
 
 export class Gallery extends Component {
   state = {
@@ -39,11 +40,11 @@ export class Gallery extends Component {
         {slides.map((slide, i) => {
           return (
             <div
-              key={slide._id}
+              key={i}
               className="gallery__slide"
               style={{ transform: `translateX(${100 * (i - this.state.currentSlide)}%)` }}
             >
-              <img src={slide.url} alt="Gallery" className="gallery__img" />
+              <img src={slide} alt="Gallery" className="gallery__img" />
             </div>
           );
         })}

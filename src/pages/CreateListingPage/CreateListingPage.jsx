@@ -20,6 +20,7 @@ export class CreateListingsPage extends Component {
     location: '',
     images: [],
     selectedFile: null,
+    userId: '123456',
   };
 
   handleChange = (e) => {
@@ -46,7 +47,27 @@ export class CreateListingsPage extends Component {
 
   handleCreateListing = (e) => {
     e.preventDefault();
-    console.log('Create');
+    axios
+      .post(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}`, {
+        creatorId: this.state.userId,
+        posted: true,
+        sold: false,
+        title: this.state.title,
+        price: this.state.price,
+        listCurrency: this.state.listCurrency,
+        category: this.state.category,
+        condition: this.state.condition,
+        location: { lat: '41.40338', long: '2.17403' },
+        description: this.state.description,
+        images: this.state.images,
+        followers: [],
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(`💣 === ERROR UPLOADING LISTING === 💣`, err);
+      });
   };
 
   handleCancel = (e) => {
