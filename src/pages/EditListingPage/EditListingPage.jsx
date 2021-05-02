@@ -50,20 +50,20 @@ export class EditListingPage extends Component {
   };
 
   onPhotoUploadHandler = (e) => {
+    if (!this.state.selectedFile) return;
     const UPLOAD_EP = `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_UPLOAD_EP}`;
     const data = new FormData();
     data.append('file', this.state.selectedFile);
     axios.post(`${UPLOAD_EP}`, data).then((res) => {
-      const images = [...this.state.images];
-      images.push(`${process.env.REACT_APP_BACKEND_EP}/${res.data.filename}`);
+      const listing = { ...this.state.listing };
+      listing.images.push(`${process.env.REACT_APP_BACKEND_EP}/${res.data.filename}`);
       this.setState({
-        images,
+        listing,
       });
     });
   };
 
   handleEditListing = (data) => {
-    console.log(data);
     axios
       .patch(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}/${this.state.listing._id}`, {
         creatorId: this.state.userId,
@@ -76,8 +76,7 @@ export class EditListingPage extends Component {
         condition: data.condition,
         location: { lat: '41.40338', long: '2.17403' },
         description: data.description,
-        images: this.state.images,
-        followers: [],
+        images: this.state.listing.images,
       })
       .then((res) => {
         console.log(res);
@@ -94,10 +93,11 @@ export class EditListingPage extends Component {
 
   handleDeleteImage = (e) => {
     e.preventDefault();
+    console.log('deleting image', e.target.dataset.index);
     const deleteIndex = e.target.dataset.index;
-    const images = [...this.state.images];
+    const images = [...this.state.listing.images];
     images.splice(deleteIndex, 1);
-    this.setState({ images });
+    this.setState({ listing: { images } });
   };
 
   handleDeleteListing = (e) => {
