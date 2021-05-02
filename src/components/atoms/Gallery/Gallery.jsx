@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import BackArrow from './../../../assets/icons/arrow_back_ios_black_24dp.svg';
 import NextArrow from './../../../assets/icons/arrow_forward_ios_black_24dp.svg';
 import './Gallery.scss';
-const { v4: uuidv4 } = require('uuid');
 
 export class Gallery extends Component {
   state = {
@@ -11,7 +10,7 @@ export class Gallery extends Component {
   };
 
   backPressed = () => {
-    let { currentSlide, maxSlides } = this.state;
+    let { currentSlide } = this.state;
     if (currentSlide <= 0) {
       this.setState({ currentSlide: this.state.maxSlides });
     } else {
@@ -36,7 +35,6 @@ export class Gallery extends Component {
     const slides = images;
     return (
       <div className="gallery">
-        {/* <div className="gallery__slider"> */}
         {slides.map((slide, i) => {
           return (
             <div
@@ -62,7 +60,6 @@ export class Gallery extends Component {
             );
           })}
         </div>
-        {/* </div> */}
       </div>
     );
   }

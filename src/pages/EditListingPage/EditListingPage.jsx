@@ -78,9 +78,6 @@ export class EditListingPage extends Component {
         description: data.description,
         images: this.state.listing.images,
       })
-      .then((res) => {
-        console.log(res);
-      })
       .catch((err) => {
         console.log(`💣 === ERROR PATCHING LISTING === 💣`, err);
       });
@@ -131,18 +128,18 @@ export class EditListingPage extends Component {
             onClick={this.onPhotoUploadHandler}
             className="edit-listing-page__add-photos-icon"
             src={AddPicsIcon}
-            alt="Add photos"
+            alt="Add"
           />
           <div className="edit-listing-page__upload-images">
             {this.state.listing.images.map((image, i) => {
               return (
                 <figure key={uuidv4()} className="edit-listing-page__upload-figure">
-                  <img className="edit-listing-page__upload-image" src={this.state.listing.images[i]} alt="image-1" />
+                  <img className="edit-listing-page__upload-image" src={this.state.listing.images[i]} alt="1" />
                   <img
                     data-index={i}
                     onClick={this.handleDeleteImage}
                     src={DeleteIcon}
-                    alt="Delete Image"
+                    alt="Delete"
                     className="edit-listing-page__delete-image"
                   />
                 </figure>

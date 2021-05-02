@@ -75,7 +75,7 @@ export class ListingForm extends Component {
   render() {
     const { handleCancel, handleDelete } = this.props;
     return (
-      <div className="listing-form__container-bottom">
+      <form className="listing-form__container-bottom">
         <div className="listing-form__container-bottom-left">
           <InputField
             name="title"
@@ -155,7 +155,7 @@ export class ListingForm extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </form>
     );
   }
 }

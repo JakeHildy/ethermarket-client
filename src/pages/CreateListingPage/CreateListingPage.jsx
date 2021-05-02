@@ -99,12 +99,12 @@ export class CreateListingPage extends Component {
             {this.state.listing.images.map((image, i) => {
               return (
                 <figure key={uuidv4()} className="create-listing-page__upload-figure">
-                  <img className="create-listing-page__upload-image" src={this.state.listing.images[i]} alt="image-1" />
+                  <img className="create-listing-page__upload-image" src={this.state.listing.images[i]} alt="1" />
                   <img
                     data-index={i}
                     onClick={this.handleDeleteImage}
                     src={DeleteIcon}
-                    alt="Delete Image"
+                    alt="Delete"
                     className="create-listing-page__delete-image"
                   />
                 </figure>
