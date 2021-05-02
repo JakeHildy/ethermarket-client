@@ -15,7 +15,6 @@ function InputField({ name, label, value, placeholder, onChange, error }) {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        autoComplete="off"
       />
       {error && (
         <div className="error">

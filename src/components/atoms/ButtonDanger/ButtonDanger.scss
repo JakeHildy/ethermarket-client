@@ -1,0 +1,21 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+.button-danger {
+  border: 1px solid $color-dark-shades;
+  border-radius: 2rem;
+  background-color: $color-button-danger;
+  width: 100%;
+  padding: $tiny $extra-small;
+  font-size: 1.6rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($color-button-danger, 10%);
+    box-shadow: $shadow-img-gallery;
+    transform: translateY(-0.1rem);
+  }
+}

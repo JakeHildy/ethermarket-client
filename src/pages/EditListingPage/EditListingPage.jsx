@@ -5,6 +5,7 @@ import TextArea from './../../components/atoms/TextArea/TextArea';
 import DropDownField from './../../components/atoms/DropDownField/DropDownField';
 import ButtonPrimary from './../../components/atoms/ButtonPrimary/ButtonPrimary';
 import ButtonSecondary from './../../components/atoms/ButtonSecondary/ButtonSecondary';
+import ButtonDanger from './../../components/atoms/ButtonDanger/ButtonDanger';
 import AddPicsIcon from './../../assets/icons/add_photo_alternate_black_24dp.svg';
 import DeleteIcon from './../../assets/icons/delete_forever_white_24dp.svg';
 import axios from 'axios';
@@ -149,34 +150,49 @@ export class EditListingPage extends Component {
     this.setState({ images });
   };
 
+  handleDeleteListing = (e) => {
+    e.preventDefault();
+    axios
+      .delete(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}/${this.state._id}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .then(() => {
+        this.props.history.push('/browse');
+      })
+      .catch((err) => {
+        console.log(`💣 === ERROR DELETING LISTING === 💣`, err);
+      });
+  };
+
   render() {
     return (
-      <div className="create-listing-page">
-        <h1 className="create-listing-page__title">Create Listing</h1>
-        <div className="create-listing-page__add-photos">
+      <div className="edit-listing-page">
+        <h1 className="edit-listing-page__title">Edit Listing</h1>
+        <div className="edit-listing-page__add-photos">
           <input
             type="file"
             name="file"
             onChange={this.onPhotoChangeHandler}
-            className="create-listing-page__add-photos-label"
+            className="edit-listing-page__add-photos-label"
           ></input>
           <img
             onClick={this.onPhotoUploadHandler}
-            className="create-listing-page__add-photos-icon"
+            className="edit-listing-page__add-photos-icon"
             src={AddPicsIcon}
             alt="Add photos"
           />
-          <div className="create-listing-page__upload-images">
+          <div className="edit-listing-page__upload-images">
             {this.state.images.map((image, i) => {
               return (
-                <figure key={uuidv4()} className="create-listing-page__upload-figure">
-                  <img className="create-listing-page__upload-image" src={this.state.images[i]} alt="image-1" />
+                <figure key={uuidv4()} className="edit-listing-page__upload-figure">
+                  <img className="edit-listing-page__upload-image" src={this.state.images[i]} alt="image-1" />
                   <img
                     data-index={i}
                     onClick={this.handleDeleteImage}
                     src={DeleteIcon}
                     alt="Delete Image"
-                    className="create-listing-page__delete-image"
+                    className="edit-listing-page__delete-image"
                   />
                 </figure>
               );
@@ -184,8 +200,8 @@ export class EditListingPage extends Component {
           </div>
         </div>
 
-        <div className="create-listing-page__container-bottom">
-          <div className="create-listing-page__container-bottom-left">
+        <div className="edit-listing-page__container-bottom">
+          <div className="edit-listing-page__container-bottom-left">
             <InputField
               name="title"
               label="Title *"
@@ -194,8 +210,8 @@ export class EditListingPage extends Component {
               onChange={this.handleChange}
               error={this.state.titleError}
             />
-            <div className="create-listing-page__currency-input">
-              <div className="create-listing-page__amount">
+            <div className="edit-listing-page__currency-input">
+              <div className="edit-listing-page__amount">
                 <InputField
                   name="price"
                   label="Price *"
@@ -205,7 +221,7 @@ export class EditListingPage extends Component {
                   error={this.state.priceError}
                 />
               </div>
-              <div className="create-listing-page__currency">
+              <div className="edit-listing-page__currency">
                 <DropDownField
                   name="listCurrency"
                   label="Currency"
@@ -233,7 +249,7 @@ export class EditListingPage extends Component {
               error=""
             />
           </div>
-          <div className="create-listing-page__container-bottom-right">
+          <div className="edit-listing-page__container-bottom-right">
             <InputField
               name="location"
               label="Location"
@@ -250,12 +266,15 @@ export class EditListingPage extends Component {
               onChange={this.handleChange}
               error={this.state.descriptionError}
             />
-            <div className="create-listing-page__buttons">
-              <div className="create-listing-page__button-cancel">
+            <div className="edit-listing-page__buttons">
+              <div className="edit-listing-page__button-cancel">
                 <ButtonSecondary label="Cancel" handleClick={this.handleCancel} />
               </div>
-              <div className="create-listing-page__button-create">
-                <ButtonPrimary label="Create" handleClick={this.handleEditListing} />
+              <div className="edit-listing-page__button-cancel">
+                <ButtonDanger label="Delete" handleClick={this.handleDeleteListing} />
+              </div>
+              <div className="edit-listing-page__button-create">
+                <ButtonPrimary label="Submit" handleClick={this.handleEditListing} />
               </div>
             </div>
           </div>
