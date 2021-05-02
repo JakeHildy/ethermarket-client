@@ -7,7 +7,7 @@ export class HomePage extends Component {
       <div>
         <h1>Home Page</h1>
         <Link to="/create">Create Posting</Link>
-        <Link to="/edit">Edit Posting</Link>
+        <Link to="/edit/608d7ac24a3b6f241c769696">Edit Posting</Link>
       </div>
     );
   }

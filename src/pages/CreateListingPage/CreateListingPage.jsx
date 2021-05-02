@@ -10,7 +10,7 @@ import DeleteIcon from './../../assets/icons/delete_forever_white_24dp.svg';
 import axios from 'axios';
 const { v4: uuidv4 } = require('uuid');
 
-export class CreateListingsPage extends Component {
+export class CreateListingPage extends Component {
   state = {
     title: '',
     titleError: '',
@@ -159,7 +159,7 @@ export class CreateListingsPage extends Component {
           <div className="create-listing-page__container-bottom-left">
             <InputField
               name="title"
-              label="Title"
+              label="Title *"
               value={this.state.title}
               placeholder="Enter Title..."
               onChange={this.handleChange}
@@ -169,7 +169,7 @@ export class CreateListingsPage extends Component {
               <div className="create-listing-page__amount">
                 <InputField
                   name="price"
-                  label="Price"
+                  label="Price *"
                   value={this.state.price}
                   placeholder="Enter Price..."
                   onChange={this.handleChange}
@@ -215,7 +215,7 @@ export class CreateListingsPage extends Component {
             />
             <TextArea
               name="description"
-              label="Description"
+              label="Description *"
               value={this.state.description}
               placeholder="Enter Description..."
               onChange={this.handleChange}
@@ -236,4 +236,4 @@ export class CreateListingsPage extends Component {
   }
 }
 
-export default CreateListingsPage;
+export default CreateListingPage;

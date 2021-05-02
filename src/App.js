@@ -22,7 +22,7 @@ class App extends Component {
             <Route path="/login" component={LoginPage} />
             <Route path="/home" component={HomePage} />
             <Route path="/create" component={CreateListingPage} />
-            <Route path="/edit" component={EditListingPage} />
+            <Route path="/edit/:id" component={EditListingPage} />
             <Route path="/chat" component={ChatPage} />
             <Route path="/listing/:id" component={ListingPage} />
             <Redirect from="/" to="/browse" />
