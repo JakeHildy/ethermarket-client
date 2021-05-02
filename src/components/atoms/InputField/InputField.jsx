@@ -2,7 +2,7 @@ import React from 'react';
 import ErrorIcon from '../../../assets/icons/error-24px.svg';
 import './InputField.scss';
 
-function InputField({ name, label, value, placeholder, onChange, error }) {
+function InputField({ name, label, value, placeholder, onChange, error, type }) {
   return (
     <div className="input-field">
       <label htmlFor="input" className="input-field__label">
@@ -15,6 +15,7 @@ function InputField({ name, label, value, placeholder, onChange, error }) {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        type={type || 'text'}
       />
       {error && (
         <div className="error">

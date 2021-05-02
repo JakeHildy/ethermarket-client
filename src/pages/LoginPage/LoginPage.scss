@@ -1,0 +1,41 @@
+@use './../../styles/partials/variables' as *;
+@use './../../styles/partials/mixins' as *;
+@use './../../styles/partials/typography' as *;
+
+.login-page {
+  padding: $huge $mobile-spacing;
+  max-width: $desktop-max-width;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @include desktop {
+    margin: 0 auto;
+  }
+
+  &__logo {
+    width: 20rem;
+    margin-bottom: $tiny;
+  }
+
+  &__title {
+    font-size: 2.6rem;
+    font-weight: 300;
+    margin-bottom: 4rem;
+  }
+
+  &__login-form {
+    width: 100%;
+    max-width: 50rem;
+  }
+
+  &__login-input {
+    margin-bottom: 6rem;
+  }
+
+  &__login-buttons {
+    width: 20rem;
+    margin: 0 auto;
+  }
+}
