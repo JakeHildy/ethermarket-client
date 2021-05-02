@@ -145,9 +145,11 @@ export class ListingForm extends Component {
             <div className="listing-form__button-cancel">
               <ButtonSecondary label="Cancel" handleClick={handleCancel} />
             </div>
-            <div className="listing-form__button-cancel">
-              <ButtonDanger label="Delete" handleClick={handleDelete} />
-            </div>
+            {handleDelete && (
+              <div className="listing-form__button-cancel">
+                <ButtonDanger label="Delete" handleClick={handleDelete} />
+              </div>
+            )}
             <div className="listing-form__button-create">
               <ButtonPrimary label="Submit" handleClick={this.attemptSubmit} />
             </div>
