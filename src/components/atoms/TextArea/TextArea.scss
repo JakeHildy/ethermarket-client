@@ -10,7 +10,7 @@
     border: 0.1rem solid $color-light-accent;
     border-radius: 2rem;
     font-family: inherit;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: normal;
     padding: $tiny $extra-small;
     width: 100%;
@@ -20,7 +20,7 @@
 
     @include tablet {
       height: 15.6vw;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
     }
 
     &:active,

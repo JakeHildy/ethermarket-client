@@ -13,11 +13,15 @@ const { v4: uuidv4 } = require('uuid');
 export class CreateListingsPage extends Component {
   state = {
     title: '',
+    titleError: '',
     price: '',
+    priceError: '',
     listCurrency: 'ETH',
     category: 'Miscellaneous',
     condition: '',
     location: '',
+    description: '',
+    descriptionError: '',
     images: [],
     selectedFile: null,
     userId: '123456',
@@ -47,27 +51,60 @@ export class CreateListingsPage extends Component {
 
   handleCreateListing = (e) => {
     e.preventDefault();
-    axios
-      .post(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}`, {
-        creatorId: this.state.userId,
-        posted: true,
-        sold: false,
-        title: this.state.title,
-        price: this.state.price,
-        listCurrency: this.state.listCurrency,
-        category: this.state.category,
-        condition: this.state.condition,
-        location: { lat: '41.40338', long: '2.17403' },
-        description: this.state.description,
-        images: this.state.images,
-        followers: [],
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(`💣 === ERROR UPLOADING LISTING === 💣`, err);
-      });
+
+    // Validation
+    let titleError = '';
+    if (!this.state.title) {
+      titleError = 'Title Required';
+    }
+    let priceError = '';
+    if (!this.state.price) {
+      priceError = 'Price Required';
+    }
+    if (this.state.price < 0) {
+      priceError = "Price can't be negative";
+    }
+    if (!Number(this.state.price)) {
+      priceError = 'Enter valid number';
+    }
+    let descriptionError = '';
+    if (!this.state.description) {
+      descriptionError = 'Description Required';
+    }
+
+    this.setState(
+      {
+        titleError,
+        priceError,
+        descriptionError,
+      },
+      () => {
+        if (titleError || priceError || descriptionError) {
+          return;
+        }
+        axios
+          .post(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}`, {
+            creatorId: this.state.userId,
+            posted: true,
+            sold: false,
+            title: this.state.title,
+            price: this.state.price,
+            listCurrency: this.state.listCurrency,
+            category: this.state.category,
+            condition: this.state.condition,
+            location: { lat: '41.40338', long: '2.17403' },
+            description: this.state.description,
+            images: this.state.images,
+            followers: [],
+          })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(`💣 === ERROR UPLOADING LISTING === 💣`, err);
+          });
+      }
+    );
   };
 
   handleCancel = (e) => {
@@ -126,7 +163,7 @@ export class CreateListingsPage extends Component {
               value={this.state.title}
               placeholder="Enter Title..."
               onChange={this.handleChange}
-              error=""
+              error={this.state.titleError}
             />
             <div className="create-listing-page__currency-input">
               <div className="create-listing-page__amount">
@@ -136,7 +173,7 @@ export class CreateListingsPage extends Component {
                   value={this.state.price}
                   placeholder="Enter Price..."
                   onChange={this.handleChange}
-                  error=""
+                  error={this.state.priceError}
                 />
               </div>
               <div className="create-listing-page__currency">
@@ -182,7 +219,7 @@ export class CreateListingsPage extends Component {
               value={this.state.description}
               placeholder="Enter Description..."
               onChange={this.handleChange}
-              error=""
+              error={this.state.descriptionError}
             />
             <div className="create-listing-page__buttons">
               <div className="create-listing-page__button-cancel">

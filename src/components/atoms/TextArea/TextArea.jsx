@@ -17,9 +17,9 @@ function TextArea({ name, label, value, placeholder, onChange, error }) {
         onChange={onChange}
       />
       {error && (
-        <div className="error-2">
-          <img src={errorIcon} alt="error icon" className="error-2__icon" />
-          <p className="error-2__message">{error}</p>
+        <div className="error">
+          <img src={errorIcon} alt="error icon" className="error__icon" />
+          <p className="error__message">{error}</p>
         </div>
       )}
     </div>
