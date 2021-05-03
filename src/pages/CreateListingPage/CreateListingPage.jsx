@@ -20,8 +20,17 @@ export class CreateListingPage extends Component {
     },
     listingLoaded: false,
     selectedFile: null,
-    userId: '123456',
+    userId: '',
   };
+
+  componentDidMount() {
+    const userId = sessionStorage.getItem('userId');
+    if (userId) {
+      this.setState({ userId });
+    } else {
+      this.props.history.push('/login');
+    }
+  }
 
   onPhotoChangeHandler = (e) => {
     this.setState({ selectedFile: e.target.files[0] });

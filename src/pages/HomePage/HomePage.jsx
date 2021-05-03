@@ -26,16 +26,20 @@ export class HomePage extends Component {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        const { email, following, listings, ratings, username } = res.data.data;
-        this.setState({ email, following, listings, ratings, username });
+        const { email, following, ratings, username } = res.data.data;
+        this.setState({ email, following, ratings, username });
       });
+
+    axios.get(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}?creatorId=${id}`).then((res) => {
+      this.setState({ listings: res.data.data.listings });
+    });
   };
 
   render() {
     return (
       <div className="home-page">
         <div className="home-page__user-info">
-          <img className="home-page__user-profile-pic" src={ProfileIcon} />
+          <img className="home-page__user-profile-pic" src={ProfileIcon} alt="profile" />
           <div className="home-page__name-stars">
             <h1 className="home-page__username">{this.state.username}</h1>
             <StarRating rating="4.5" />
@@ -44,7 +48,7 @@ export class HomePage extends Component {
         <h2 className="home-page__sub-title">Your Listings:</h2>
         <div className="home-page__user-listings-container">
           <Link to="/create">
-            <img className="home-page__new-listing-icon" src={CreateNewIcon} />
+            <img className="home-page__new-listing-icon" src={CreateNewIcon} alt="New Listing" />
           </Link>
         </div>
         <h2 className="home-page__sub-title">Following:</h2>
