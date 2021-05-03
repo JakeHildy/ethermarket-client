@@ -40,12 +40,15 @@
   &__user-listings-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
   }
 
   &__new-listing-icon {
     margin: $tiny;
     width: 3rem;
     cursor: pointer;
+  }
+
+  &__new-listing-link {
+    align-self: flex-end;
   }
 }

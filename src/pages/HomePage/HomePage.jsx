@@ -5,12 +5,14 @@ import axios from 'axios';
 import ProfileIcon from './../../assets/icons/account_circle_black_24dp.svg';
 import CreateNewIcon from './../../assets/icons/add_circle_black_24dp.svg';
 import StarRating from './../../components/atoms/StarRating/StarRating';
+import ListingSmallDetail from './../../components/molecules/ListingSmallDetail/ListingSmallDetail';
 
 export class HomePage extends Component {
   state = {
     email: '',
     following: [],
     listings: [],
+    listingsLoaded: false,
     ratings: [],
     username: '',
   };
@@ -31,11 +33,12 @@ export class HomePage extends Component {
       });
 
     axios.get(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}?creatorId=${id}`).then((res) => {
-      this.setState({ listings: res.data.data.listings });
+      this.setState({ listings: res.data.data.listings, listingsLoaded: true });
     });
   };
 
   render() {
+    if (!this.state.listingsLoaded) return null;
     return (
       <div className="home-page">
         <div className="home-page__user-info">
@@ -47,7 +50,11 @@ export class HomePage extends Component {
         </div>
         <h2 className="home-page__sub-title">Your Listings:</h2>
         <div className="home-page__user-listings-container">
-          <Link to="/create">
+          {this.state.listings.map((listing, i) => {
+            return <ListingSmallDetail key={i} listing={listing} />;
+          })}
+
+          <Link to="/create" className="home-page__new-listing-link">
             <img className="home-page__new-listing-icon" src={CreateNewIcon} alt="New Listing" />
           </Link>
         </div>

@@ -67,7 +67,8 @@ export class CreateListingPage extends Component {
         followers: [],
       })
       .then((res) => {
-        console.log(res);
+        const id = res.data.data.listing._id;
+        this.props.history.push(`/listing/${id}`);
       })
       .catch((err) => {
         console.log(`💣 === ERROR UPLOADING LISTING === 💣`, err);

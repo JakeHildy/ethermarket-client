@@ -1,0 +1,55 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+.listing-small-detail {
+  display: flex;
+  align-items: center;
+  padding: $tiny 0;
+  border-bottom: $separator-line;
+  height: 20vw;
+
+  &__figure {
+    width: 20vw;
+    margin-right: $extra-small;
+  }
+
+  &__img {
+    @include image;
+  }
+
+  &__title {
+    font-size: 1.7rem;
+    font-weight: normal;
+    margin-bottom: 0.4rem;
+  }
+
+  &__price {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__price-icon {
+    margin-right: $tiny;
+    align-self: start;
+  }
+
+  &__price-container {
+  }
+
+  &__list-price {
+    font-size: 1.3rem;
+    margin-bottom: 0.2rem;
+  }
+
+  &__local-price {
+    font-size: 1.1rem;
+    color: $color-light-accent;
+  }
+
+  &__chat-icon {
+    width: 4rem;
+    margin-left: auto;
+    margin-right: $tiny;
+  }
+}
