@@ -83,9 +83,9 @@ export class CreateListingPage extends Component {
   handleDeleteImage = (e) => {
     e.preventDefault();
     const deleteIndex = e.target.dataset.index;
-    const images = [...this.state.listing.images];
-    images.splice(deleteIndex, 1);
-    this.setState({ listing: { images } });
+    const listing = { ...this.state.listing };
+    listing.images.splice(deleteIndex, 1);
+    this.setState({ listing });
   };
 
   render() {

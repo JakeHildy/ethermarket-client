@@ -3,14 +3,15 @@ import './ListingSmallDetail.scss';
 import CashIcon from './../../../assets/icons/local_atm_black_24dp.svg';
 import ChatIcon from './../../../assets/icons/chat_black_24dp.svg';
 
-function ListingSmallDetail({ listing }) {
+function ListingSmallDetail({ listing, onClick, onChatClick }) {
   const conversionRate = 0.34;
+
   return (
     <div className="listing-small-detail">
-      <figure className="listing-small-detail__figure">
+      <figure onClick={onClick} className="listing-small-detail__figure">
         <img className="listing-small-detail__img" src={listing.images[0]} alt={listing.title} />
       </figure>
-      <div className="listing-small-detail__details">
+      <div onClick={onClick} className="listing-small-detail__details">
         <h3 className="listing-small-detail__title">{listing.title}</h3>
         <div className="listing-small-detail__price">
           <img className="listing-small-detail__price-icon" src={CashIcon} alt="Cash Icon" />
@@ -24,7 +25,7 @@ function ListingSmallDetail({ listing }) {
           </div>
         </div>
       </div>
-      <img className="listing-small-detail__chat-icon" src={ChatIcon} alt="chat" />
+      <img onClick={onChatClick} className="listing-small-detail__chat-icon" src={ChatIcon} alt="chat" />
     </div>
   );
 }

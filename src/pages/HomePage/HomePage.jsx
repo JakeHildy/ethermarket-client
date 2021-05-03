@@ -37,6 +37,18 @@ export class HomePage extends Component {
     });
   };
 
+  handleDetailLink = (id) => {
+    console.log('go to detail', id);
+  };
+
+  handleEditLink = (id) => {
+    this.props.history.push(`/edit/${id}`);
+  };
+
+  handleChatLink = (id) => {
+    console.log('go to chat', id);
+  };
+
   render() {
     if (!this.state.listingsLoaded) return null;
     return (
@@ -51,7 +63,14 @@ export class HomePage extends Component {
         <h2 className="home-page__sub-title">Your Listings:</h2>
         <div className="home-page__user-listings-container">
           {this.state.listings.map((listing, i) => {
-            return <ListingSmallDetail key={i} listing={listing} />;
+            return (
+              <ListingSmallDetail
+                key={i}
+                listing={listing}
+                onClick={() => this.handleEditLink(listing._id)}
+                onChatClick={() => this.handleChatLink(listing._id)}
+              />
+            );
           })}
 
           <Link to="/create" className="home-page__new-listing-link">

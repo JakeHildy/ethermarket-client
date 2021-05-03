@@ -21,10 +21,17 @@ export class EditListingPage extends Component {
     },
     listingLoaded: false,
     selectedFile: null,
-    userId: '123456',
+    userId: '',
   };
 
   componentDidMount = () => {
+    const userId = sessionStorage.getItem('userId');
+    if (userId) {
+      this.setState({ userId });
+    } else {
+      this.props.history.push('/login');
+    }
+
     const LISTING_EP = `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}`;
     axios.get(`${LISTING_EP}/${this.props.match.params.id}`).then((res) => {
       const {
@@ -92,9 +99,9 @@ export class EditListingPage extends Component {
     e.preventDefault();
     console.log('deleting image', e.target.dataset.index);
     const deleteIndex = e.target.dataset.index;
-    const images = [...this.state.listing.images];
-    images.splice(deleteIndex, 1);
-    this.setState({ listing: { images } });
+    const listing = { ...this.state.listing };
+    listing.images.splice(deleteIndex, 1);
+    this.setState({ listing });
   };
 
   handleDeleteListing = (e) => {

@@ -14,6 +14,11 @@
     margin: 0 auto;
   }
 
+  &__title {
+    text-align: center;
+    margin-bottom: $extra-small;
+  }
+
   &__add-photos {
     border: 0.1rem solid $color-light-accent;
     padding: $extra-small;
