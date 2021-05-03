@@ -24,7 +24,19 @@ export class ListingPage extends Component {
   };
 
   followPost = () => {
-    console.log('follow post button clicked');
+    const token = sessionStorage.getItem('authToken');
+    const id = sessionStorage.getItem('userId');
+    axios
+      .patch(
+        `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_USER_EP}/follow/${this.state.listing._id}`,
+        { userId: id },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      });
   };
 
   render() {
