@@ -65,6 +65,36 @@ export class LoginPage extends Component {
             password: this.state.password,
           })
           .then((res) => {
+            if (res.status === 201) {
+              console.log('Signup successful.');
+              this.setState({ signup: false });
+            }
+          })
+          .catch((err) => {
+            console.log(`💣 === ERROR LOGGING IN === 💣`, err);
+          });
+      });
+    } else {
+      // Regular Login
+      // Validation
+      let usernameError = '';
+      if (!this.state.username) {
+        usernameError = 'This field is required';
+      }
+
+      let passwordError = '';
+      if (!this.state.password) {
+        passwordError = 'This field is required';
+      }
+
+      this.setState({ passwordError, usernameError }, () => {
+        if (passwordError || usernameError) return;
+        axios
+          .post(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LOGIN_EP}`, {
+            username: this.state.username,
+            password: this.state.password,
+          })
+          .then((res) => {
             if (res.status === 200) {
               sessionStorage.authToken = res.data.token;
               sessionStorage.userId = res.data.id;
@@ -75,23 +105,6 @@ export class LoginPage extends Component {
             console.log(`💣 === ERROR LOGGING IN === 💣`, err);
           });
       });
-    } else {
-      // Regular Login
-      axios
-        .post(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LOGIN_EP}`, {
-          username: this.state.username,
-          password: this.state.password,
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            sessionStorage.authToken = res.data.token;
-            sessionStorage.userId = res.data.id;
-            this.props.history.push('/home');
-          }
-        })
-        .catch((err) => {
-          console.log(`💣 === ERROR LOGGING IN === 💣`, err);
-        });
     }
   };
 
