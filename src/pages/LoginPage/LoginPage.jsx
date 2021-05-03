@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './LoginPage.scss';
+import axios from 'axios';
 import EthereumLogo from './../../assets/images/ethereum-icon-purple.png';
 import InputField from './../../components/atoms/InputField/InputField';
 import ButtonPrimary from './../../components/atoms/ButtonPrimary/ButtonPrimary';
@@ -18,11 +19,27 @@ export class LoginPage extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit = (e) => {
+  // Login
+  handleLogin = (e) => {
     e.preventDefault();
-    console.log('Login Submitted');
+    axios
+      .post(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LOGIN_EP}`, {
+        username: this.state.username,
+        password: this.state.password,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          sessionStorage.authToken = res.data.token;
+          sessionStorage.userId = res.data.id;
+          this.props.history.push('/home');
+        }
+      })
+      .catch((err) => {
+        console.log(`💣 === ERROR LOGGING IN === 💣`, err);
+      });
   };
 
+  // SignUp
   handleSignUp = (e) => {
     e.preventDefault();
     console.log('Sign Up Clicked');
@@ -35,13 +52,14 @@ export class LoginPage extends Component {
   };
 
   render() {
+    const { signup } = this.state;
     return (
       <div className="login-page">
         <img className="login-page__logo" src={EthereumLogo} alt="logo" />
         <h1 className="login-page__title">EtherMarket</h1>
-        <form className="login-page__login-form" onSubmit={this.handleSubmit}>
+        <form className="login-page__login-form" onSubmit={this.handleLogin}>
           <div className="login-page__login-input">
-            {this.state.signup && (
+            {signup && (
               <InputField
                 name="email"
                 label="Email"
@@ -69,12 +87,12 @@ export class LoginPage extends Component {
               type="password"
               error=""
             />
-            {!this.state.signup && (
+            {!signup && (
               <h4 onClick={this.handleSignUp} className="login-page__sign-up-text">
                 Sign-up
               </h4>
             )}
-            {this.state.signup && (
+            {signup && (
               <InputField
                 name="confirmPassword"
                 label="Confirm Password"
@@ -85,14 +103,14 @@ export class LoginPage extends Component {
                 error=""
               />
             )}
-            {this.state.signup && (
+            {signup && (
               <h4 onClick={this.handleBack} className="login-page__sign-up-text">
                 Back
               </h4>
             )}
           </div>
           <div className="login-page__login-buttons">
-            <ButtonPrimary label={this.state.signup ? 'Sign Up' : 'Login'} />
+            <ButtonPrimary label={signup ? 'Sign Up' : 'Login'} />
           </div>
         </form>
       </div>
