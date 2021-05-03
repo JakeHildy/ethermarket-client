@@ -5,13 +5,13 @@ import './InputField.scss';
 function InputField({ name, label, value, placeholder, onChange, error, type }) {
   return (
     <div className="input-field">
-      <label htmlFor="input" className="input-field__label">
+      <label htmlFor={`${name}-${label}`} className="input-field__label">
         {label}
       </label>
       <input
         className={error ? 'input-field__error' : 'input-field__input'}
         name={name}
-        id="input"
+        id={`${name}-${label}`}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
