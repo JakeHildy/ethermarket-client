@@ -46,7 +46,10 @@ export class HomePage extends Component {
       axios
         .get(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}/${id}`)
         .then((res) => {
-          followedListings.push(res.data.data.listing);
+          // If the listing exists, push it to the followedListings Array.
+          if (res.data.data.listing) {
+            followedListings.push(res.data.data.listing);
+          }
           if (i === ids.length - 1) {
             this.setState({ followedListings, followedListingsLoaded: true });
           }
