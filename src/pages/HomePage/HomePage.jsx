@@ -31,7 +31,7 @@ export class HomePage extends Component {
       })
       .then((res) => {
         const { email, following, ratings, username } = res.data.data;
-        this.setState({ email, following, ratings, username });
+        this.setState({ email, following, ratings, username }, this.populateFollowingListings);
       });
 
     axios.get(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}?creatorId=${id}`).then((res) => {
@@ -39,10 +39,26 @@ export class HomePage extends Component {
     });
   };
 
-  populateFollowingListings = () => {};
+  populateFollowingListings = () => {
+    const ids = this.state.following;
+    const followedListings = [];
+    ids.forEach((id, i) => {
+      axios
+        .get(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}/${id}`)
+        .then((res) => {
+          followedListings.push(res.data.data.listing);
+          if (i === ids.length - 1) {
+            this.setState({ followedListings, followedListingsLoaded: true });
+          }
+        })
+        .catch((err) => {
+          console.log(`💣 === ERROR GETTING LISTING (HomePage.jsx) === 💣`, err);
+        });
+    });
+  };
 
   handleDetailLink = (id) => {
-    console.log('go to detail', id);
+    this.props.history.push(`/listing/${id}`);
   };
 
   handleEditLink = (id) => {
@@ -50,7 +66,7 @@ export class HomePage extends Component {
   };
 
   handleChatLink = (id) => {
-    console.log('go to chat', id);
+    console.log('TODO: go to chat', id);
   };
 
   render() {
@@ -82,9 +98,18 @@ export class HomePage extends Component {
           </Link>
         </div>
         <h2 className="home-page__sub-title">Following:</h2>
-        <div className="home-page__following-listings-container"></div>
-
-        {/* <Link to="/edit/608d7ac24a3b6f241c769696">Edit Posting</Link> */}
+        <div className="home-page__following-listings-container">
+          {this.state.followedListings.map((listing, i) => {
+            return (
+              <ListingSmallDetail
+                key={i}
+                listing={listing}
+                onClick={() => this.handleDetailLink(listing._id)}
+                onChatClick={() => this.handleChatLink(listing._id)}
+              />
+            );
+          })}
+        </div>
       </div>
     );
   }
