@@ -11,6 +11,8 @@ export class HomePage extends Component {
   state = {
     email: '',
     following: [],
+    followedListings: [],
+    followedListingsLoaded: false,
     listings: [],
     listingsLoaded: false,
     ratings: [],
@@ -36,6 +38,8 @@ export class HomePage extends Component {
       this.setState({ listings: res.data.data.listings, listingsLoaded: true });
     });
   };
+
+  populateFollowingListings = () => {};
 
   handleDetailLink = (id) => {
     console.log('go to detail', id);

@@ -15,27 +15,54 @@ export class ListingPage extends Component {
 
   componentDidMount = () => {
     const listingsEP = `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}`;
-    axios.get(`${listingsEP}/${this.props.match.params.id}`).then((response) => {
-      this.setState({
-        listing: response.data.data.listing,
-        listingLoaded: true,
+    axios
+      .get(`${listingsEP}/${this.props.match.params.id}`)
+      .then((response) => {
+        this.setState({
+          listing: response.data.data.listing,
+          listingLoaded: true,
+        });
+      })
+      .catch((err) => {
+        console.log(`💣 === ERROR GETTING LISTING (ListingPage.jsx) === 💣`, err);
       });
-    });
   };
 
   followPost = () => {
     const token = sessionStorage.getItem('authToken');
     const id = sessionStorage.getItem('userId');
+
+    // If there is no user id or token go to login.
+    if (!token || !id) this.props.history.push('/login');
+
+    // If the user is logged in, grab the following array.
     axios
-      .patch(
-        `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_USER_EP}/follow/${this.state.listing._id}`,
-        { userId: id },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
+      .get(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_USER_EP}/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((res) => {
-        console.log(res);
+        const { following } = res.data.data;
+
+        // If the listing is not already followed, add it.
+        if (!following.includes(this.state.listing._id)) {
+          axios
+            .patch(
+              `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_USER_EP}/follow/${this.state.listing._id}`,
+              { userId: id },
+              {
+                headers: { Authorization: `Bearer ${token}` },
+              }
+            )
+            .catch((err) => {
+              console.log(`💣 === ERROR ADDING FOLLOWING LISTING TO USER (ListingPage.jsx) === 💣`, err);
+            });
+        }
+
+        // TODO: PUSH USER TO THAT CHAT PAGE
+        console.log('TODO: push user to corresponding chat page');
+      })
+      .catch((err) => {
+        console.log(`💣 === ERROR USER PROFILE (ListingPage.jsx) === 💣`, err);
       });
   };
 
