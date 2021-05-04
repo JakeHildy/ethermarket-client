@@ -8,9 +8,12 @@
   flex-direction: column;
   max-width: $desktop-max-width;
 
+  @include tablet {
+    padding: $small $desktop-spacing;
+  }
+
   @include desktop {
     margin: 0 auto;
-    padding: $small $desktop-spacing;
   }
 
   &__search-bar {
@@ -26,10 +29,24 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    // grid-template-columns: repeat(2, min(45.2vw, 40rem));
+    // grid-template-rows: min(45.2vw, 40rem);
+    grid-template-rows: min(40vw, 40rem);
+    // grid-auto-rows: min(45.2vw, 40rem);
+    grid-auto-rows: min(40vw, 40rem);
     grid-column-gap: $mobile-spacing;
+    grid-row-gap: $mobile-spacing;
+
+    @include tablet {
+      // grid-template-rows: min(33vw, 40rem);
+      // grid-template-rows: min(33vw, 40rem);
+      // grid-auto-rows: min(33vw, 40rem);
+      // grid-auto-rows: min(33vw, 40rem);
+    }
 
     @include desktop {
       grid-column-gap: $desktop-spacing;
+      grid-row-gap: $desktop-spacing;
     }
   }
 
