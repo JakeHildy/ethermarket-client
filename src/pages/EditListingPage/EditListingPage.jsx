@@ -53,7 +53,7 @@ export class EditListingPage extends Component {
   };
 
   onPhotoChangeHandler = (e) => {
-    this.setState({ selectedFile: e.target.files[0] });
+    this.setState({ selectedFile: e.target.files[0] }, this.onPhotoUploadHandler);
   };
 
   onPhotoUploadHandler = (e) => {
@@ -134,12 +134,12 @@ export class EditListingPage extends Component {
             onChange={this.onPhotoChangeHandler}
             className="edit-listing-page__add-photos-label"
           ></input>
-          <img
+          {/* <img
             onClick={this.onPhotoUploadHandler}
             className="edit-listing-page__add-photos-icon"
             src={AddPicsIcon}
             alt="Add"
-          />
+          /> */}
           <div className="edit-listing-page__upload-images">
             {this.state.listing.images.map((image, i) => {
               return (
