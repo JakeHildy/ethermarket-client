@@ -7,6 +7,7 @@ import ButtonPrimary from './../../atoms/ButtonPrimary/ButtonPrimary';
 import ButtonSecondary from './../../atoms/ButtonSecondary/ButtonSecondary';
 import ButtonDanger from './../../atoms/ButtonDanger/ButtonDanger';
 import categores from './../../../data/categories.json';
+import currencies from './../../../data/currencies.json';
 
 export class ListingForm extends Component {
   state = {
@@ -101,7 +102,7 @@ export class ListingForm extends Component {
               <DropDownField
                 name="listCurrency"
                 label="Currency"
-                options={['ETH', 'BTC']}
+                options={currencies}
                 value={this.state.listCurrency}
                 onChange={this.handleChange}
                 error=""
