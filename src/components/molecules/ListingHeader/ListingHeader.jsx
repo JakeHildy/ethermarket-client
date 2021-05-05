@@ -2,6 +2,7 @@ import React from 'react';
 import './ListingHeader.scss';
 import Gallery from './../../atoms/Gallery/Gallery';
 import CashIcon from './../../../assets/icons/local_atm_black_24dp.svg';
+import { printTime } from '../../../utils/dateTime';
 
 function ListingHeader({ listing, conversionRate }) {
   return (
@@ -12,7 +13,7 @@ function ListingHeader({ listing, conversionRate }) {
       <div className="listing-header__description">
         <div className="listing-header__title-container">
           <h2 className="listing-header__title">{listing.title}</h2>
-          <p className="listing-header__listed-when">Updated 5 days ago in Vancouver BC.</p> {/*TODO*/}
+          <p className="listing-header__listed-when">{`Posted ${printTime(listing.createdAt)}`}</p> {/*TODO*/}
         </div>
         <div className="listing-header__price">
           <img className="listing-header__price-icon" src={CashIcon} alt="Cash Icon" />
