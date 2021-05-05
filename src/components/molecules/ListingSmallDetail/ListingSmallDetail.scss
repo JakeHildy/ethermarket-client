@@ -10,6 +10,9 @@
   height: min(20vw, 10rem);
 
   &__figure {
+    overflow: hidden;
+    border-radius: 5px;
+    height: 100%;
     width: min(20vw, 10rem);
     margin-right: $extra-small;
     cursor: pointer;
