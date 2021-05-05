@@ -76,6 +76,12 @@ export class HomePage extends Component {
     console.log('TODO: go to chat', id);
   };
 
+  handleLogout = (e) => {
+    e.preventDefault();
+    sessionStorage.clear();
+    this.props.history.push('/login');
+  };
+
   render() {
     if (!this.state.listingsLoaded || !this.state.followedListingsLoaded) return null;
     return (
@@ -86,6 +92,9 @@ export class HomePage extends Component {
             <h1 className="home-page__username">{this.state.username}</h1>
             <StarRating rating="4.5" />
           </div>
+          <p onClick={this.handleLogout} className="home-page__logout">
+            Logout
+          </p>
         </div>
 
         <div className="home-page__listings-main-container">

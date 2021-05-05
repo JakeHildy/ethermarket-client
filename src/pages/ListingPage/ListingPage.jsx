@@ -11,6 +11,7 @@ export class ListingPage extends Component {
     listing: null,
     listingLoaded: false,
     conversionRate: 3000,
+    myListing: false,
   };
 
   componentDidMount = () => {
@@ -18,9 +19,12 @@ export class ListingPage extends Component {
     axios
       .get(`${listingsEP}/${this.props.match.params.id}`)
       .then((response) => {
+        const listing = response.data.data.listing;
+        const userId = sessionStorage.getItem('userId');
         this.setState({
-          listing: response.data.data.listing,
+          listing,
           listingLoaded: true,
+          myListing: userId === listing.creatorId,
         });
       })
       .catch((err) => {
@@ -33,7 +37,16 @@ export class ListingPage extends Component {
     const id = sessionStorage.getItem('userId');
 
     // If there is no user id or token go to login.
-    if (!token || !id) this.props.history.push('/login');
+    if (!token || !id) {
+      this.props.history.push('/login');
+      return;
+    }
+
+    // If this is the users listing, redirect to the edit page.
+    if (this.state.myListing) {
+      this.props.history.push(`/edit/${this.state.listing._id}`);
+      return;
+    }
 
     // If the user is logged in, grab the following array.
     axios
@@ -77,7 +90,7 @@ export class ListingPage extends Component {
           </div>
           <div className="listing-page__details">
             <ListingDetails listing={this.state.listing} />
-            <ButtonPrimary label="Follow Post" handleClick={this.followPost} />
+            <ButtonPrimary label={this.state.myListing ? 'Edit' : 'Follow Post'} handleClick={this.followPost} />
           </div>
         </div>
       </div>
