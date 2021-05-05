@@ -14,7 +14,6 @@ class ListingSmallDetail extends Component {
         `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_CRYPTO_EP}?symbol=${this.state.listing.listCurrency}`
       )
       .then((res) => {
-        console.log(res.data.data.quote.USD.price);
         const conversionRateUSD = res.data.data.quote.USD.price;
         this.setState({ usdPrice: this.state.listing.price * conversionRateUSD });
       });

@@ -15,7 +15,6 @@ class ListingCreatorInfo extends Component {
     axios
       .get(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_USER_EP}/simple/${this.state.listing.creatorId}`)
       .then((res) => {
-        console.log(!!res.data.data.ratings);
         this.setState({ username: res.data.data.username, ratings: res.data.data.ratings });
       });
   };
