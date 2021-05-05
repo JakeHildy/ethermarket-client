@@ -85,6 +85,9 @@ export class EditListingPage extends Component {
         description: data.description,
         images: this.state.listing.images,
       })
+      .then(() => {
+        this.props.history.push(`/listing/${this.state.listing._id}`);
+      })
       .catch((err) => {
         console.log(`💣 === ERROR PATCHING LISTING === 💣`, err);
       });
@@ -92,7 +95,7 @@ export class EditListingPage extends Component {
 
   handleCancel = (e) => {
     e.preventDefault();
-    console.log('Cancel');
+    this.props.history.goBack();
   };
 
   handleDeleteImage = (e) => {

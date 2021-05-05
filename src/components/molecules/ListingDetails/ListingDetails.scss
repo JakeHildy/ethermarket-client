@@ -16,12 +16,13 @@
 
     @include tablet {
       border-bottom: none;
-      margin-bottom: $small;
+      margin-bottom: $extra-small;
     }
   }
 
   &__category {
     display: flex;
+    // flex-direction: row;
     align-items: center;
     margin-bottom: $tiny;
   }
@@ -29,10 +30,14 @@
   &__label {
     @include typo-heading-4;
     font-weight: 600;
-    margin-left: $extra-small;
+    margin-right: $extra-small;
   }
 
   &__text {
     @include typo-paragraph;
+
+    &--paragraph {
+      margin-top: $tiny;
+    }
   }
 }
