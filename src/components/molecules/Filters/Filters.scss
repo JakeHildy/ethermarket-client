@@ -1,0 +1,48 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+.filters {
+  margin-bottom: $extra-small;
+
+  &__title {
+    font-size: 1.7rem;
+    margin-bottom: $tiny;
+  }
+
+  &__price {
+    display: flex;
+
+    &--min {
+      padding-right: $tiny;
+    }
+
+    &--max {
+      padding-left: $tiny;
+    }
+  }
+
+  &__dropdowns {
+    display: flex;
+
+    &--currency {
+      width: 30%;
+      padding-right: $extra-small;
+    }
+
+    &--category {
+      flex: 1;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    &--search {
+      width: 50%;
+    }
+    &--reset {
+      padding-right: $extra-small;
+      width: 50%;
+    }
+  }
+}

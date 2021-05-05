@@ -6,7 +6,7 @@ import DropDownField from './../../atoms/DropDownField/DropDownField';
 import ButtonPrimary from './../../atoms/ButtonPrimary/ButtonPrimary';
 import ButtonSecondary from './../../atoms/ButtonSecondary/ButtonSecondary';
 import ButtonDanger from './../../atoms/ButtonDanger/ButtonDanger';
-import categores from './../../../data/categories.json';
+import categories from './../../../data/categories.json';
 import currencies from './../../../data/currencies.json';
 
 export class ListingForm extends Component {
@@ -112,7 +112,7 @@ export class ListingForm extends Component {
           <DropDownField
             name="category"
             label="Category"
-            options={categores}
+            options={categories}
             value={this.state.category}
             onChange={this.handleChange}
             error=""
