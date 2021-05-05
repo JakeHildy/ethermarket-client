@@ -51,7 +51,11 @@ export class HomePage extends Component {
             followedListings.push(res.data.data.listing);
           }
           if (i >= ids.length - 1) {
-            this.setState({ followedListings, followedListingsLoaded: true });
+            this.setState({ followedListings }, () => {
+              setTimeout(() => {
+                this.setState({ followedListingsLoaded: true });
+              }, 100);
+            });
           }
         })
         .catch((err) => {
