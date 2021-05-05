@@ -22,6 +22,8 @@
 
   &__browse-link {
     text-decoration: none;
+    display: flex;
+    align-items: center;
   }
 
   &__home-text {
@@ -31,6 +33,16 @@
   &__home-link {
     display: flex;
     align-items: center;
+  }
+
+  &__logo {
+    width: 4rem;
+    cursor: pointer;
+    margin-right: $extra-small;
+
+    @include tablet {
+      width: 5rem;
+    }
   }
 
   &__profile-icon {
