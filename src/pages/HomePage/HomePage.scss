@@ -37,9 +37,28 @@
 
   ///////////////////////////
   // === USER LISTINGS ===
+  &__listings-main-container {
+    @include desktop {
+      display: flex;
+    }
+  }
+
   &__user-listings-container {
     display: flex;
     flex-direction: column;
+
+    @include desktop {
+      width: 50%;
+      padding: 0 $small 0 0;
+      border-right: $separator-line;
+    }
+  }
+
+  &__following-listings-container {
+    @include desktop {
+      width: 50%;
+      padding: 0 0 0 $small;
+    }
   }
 
   &__new-listing-icon {

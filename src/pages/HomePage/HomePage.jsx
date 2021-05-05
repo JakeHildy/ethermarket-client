@@ -50,7 +50,7 @@ export class HomePage extends Component {
           if (res.data.data.listing) {
             followedListings.push(res.data.data.listing);
           }
-          if (i === ids.length - 1) {
+          if (i >= ids.length - 1) {
             this.setState({ followedListings, followedListingsLoaded: true });
           }
         })
@@ -73,7 +73,7 @@ export class HomePage extends Component {
   };
 
   render() {
-    if (!this.state.listingsLoaded) return null;
+    if (!this.state.listingsLoaded || !this.state.followedListingsLoaded) return null;
     return (
       <div className="home-page">
         <div className="home-page__user-info">
@@ -83,35 +83,38 @@ export class HomePage extends Component {
             <StarRating rating="4.5" />
           </div>
         </div>
-        <h2 className="home-page__sub-title">Your Listings:</h2>
-        <div className="home-page__user-listings-container">
-          {this.state.listings.map((listing, i) => {
-            return (
-              <ListingSmallDetail
-                key={i}
-                listing={listing}
-                onClick={() => this.handleEditLink(listing._id)}
-                onChatClick={() => this.handleChatLink(listing._id)}
-              />
-            );
-          })}
 
-          <Link to="/create" className="home-page__new-listing-link">
-            <img className="home-page__new-listing-icon" src={CreateNewIcon} alt="New Listing" />
-          </Link>
-        </div>
-        <h2 className="home-page__sub-title">Following:</h2>
-        <div className="home-page__following-listings-container">
-          {this.state.followedListings.map((listing, i) => {
-            return (
-              <ListingSmallDetail
-                key={i}
-                listing={listing}
-                onClick={() => this.handleDetailLink(listing._id)}
-                onChatClick={() => this.handleChatLink(listing._id)}
-              />
-            );
-          })}
+        <div className="home-page__listings-main-container">
+          <div className="home-page__user-listings-container">
+            <h2 className="home-page__sub-title">Your Listings:</h2>
+            {this.state.listings.map((listing, i) => {
+              return (
+                <ListingSmallDetail
+                  key={i}
+                  listing={listing}
+                  onClick={() => this.handleEditLink(listing._id)}
+                  onChatClick={() => this.handleChatLink(listing._id)}
+                />
+              );
+            })}
+            <Link to="/create" className="home-page__new-listing-link">
+              <img className="home-page__new-listing-icon" src={CreateNewIcon} alt="New Listing" />
+            </Link>
+          </div>
+
+          <div className="home-page__following-listings-container">
+            <h2 className="home-page__sub-title">Following:</h2>
+            {this.state.followedListings.map((listing, i) => {
+              return (
+                <ListingSmallDetail
+                  key={i}
+                  listing={listing}
+                  onClick={() => this.handleDetailLink(listing._id)}
+                  onChatClick={() => this.handleChatLink(listing._id)}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     );
