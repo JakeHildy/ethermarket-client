@@ -4,11 +4,12 @@ import axios from 'axios';
 import Gallery from './../../atoms/Gallery/Gallery';
 import CashIcon from './../../../assets/icons/local_atm_black_24dp.svg';
 import { printTime } from '../../../utils/dateTime';
+import { getUSDPrice } from '../../../utils/curConversion';
 
 class ListingHeader extends Component {
   state = { listing: this.props.listing, usdPrice: null };
 
-  componentDidMount() {
+  componentDidMount = () => {
     axios
       .get(
         `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_CRYPTO_EP}?symbol=${this.state.listing.listCurrency}`
@@ -18,7 +19,7 @@ class ListingHeader extends Component {
         const conversionRateUSD = res.data.data.quote.USD.price;
         this.setState({ usdPrice: this.state.listing.price * conversionRateUSD });
       });
-  }
+  };
 
   render() {
     return (
