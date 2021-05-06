@@ -3,6 +3,7 @@ import axios from 'axios';
 import './BrowsePage.scss';
 import SearchField from './../../components/atoms/SearchField/SearchField';
 import Listing from './../../components/atoms/Listing/Listing';
+import NoResultsFound from './../../components/atoms/NoResultsFound/NoResultsFound';
 import Filters from './../../components/molecules/Filters/Filters';
 import Categories from './../../components/atoms/Categories/Categories';
 import categories from './../../data/categories.json';
@@ -104,11 +105,15 @@ class BrowsePage extends Component {
               handleReset={this.handleReset}
             />
           </div>
-          <div className="browse-page__listings">
+          <div
+            className={`browse-page__listings ${
+              filteredListings.length > 0 ? '' : 'browse-page__listings--no-results'
+            }`}
+          >
             {filteredListings.length > 0 ? (
               filteredListings.map((listing) => <Listing key={listing._id} listing={listing} />)
             ) : (
-              <h2>No Results Found</h2>
+              <NoResultsFound />
             )}
           </div>
         </div>

@@ -34,19 +34,15 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    // grid-template-columns: repeat(2, min(45.2vw, 40rem));
-    // grid-template-rows: min(45.2vw, 40rem);
     grid-template-rows: min(40vw, 40rem);
-    // grid-auto-rows: min(45.2vw, 40rem);
     grid-auto-rows: min(40vw, 40rem);
     grid-column-gap: $mobile-spacing;
     grid-row-gap: $mobile-spacing;
 
-    @include tablet {
-      // grid-template-rows: min(33vw, 40rem);
-      // grid-template-rows: min(33vw, 40rem);
-      // grid-auto-rows: min(33vw, 40rem);
-      // grid-auto-rows: min(33vw, 40rem);
+    &--no-results {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     @include desktop {

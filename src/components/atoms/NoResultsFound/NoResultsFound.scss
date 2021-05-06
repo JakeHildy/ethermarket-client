@@ -1,0 +1,19 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+.no-results-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__logo {
+    width: 4.5rem;
+    margin-bottom: $tiny;
+  }
+
+  &__text {
+    font-size: 1.7rem;
+  }
+}
