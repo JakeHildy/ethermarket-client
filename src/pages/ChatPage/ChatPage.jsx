@@ -6,7 +6,7 @@ import ChatBox from './../../components/molecules/ChatBox/ChatBox';
 import './ChatPage.scss';
 
 export class ChatPage extends Component {
-  state = { listing: null, listingLoaded: false, myListing: false };
+  state = { listing: null, listingLoaded: false, isMyListing: false };
 
   componentDidMount = () => {
     const listingsEP = `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}`;
@@ -18,7 +18,7 @@ export class ChatPage extends Component {
         this.setState({
           listing,
           listingLoaded: true,
-          myListing: userId === listing.creatorId,
+          isMyListing: userId === listing.creatorId,
         });
       })
       .catch((err) => {
@@ -27,11 +27,22 @@ export class ChatPage extends Component {
   };
 
   render() {
+    // Stakeholders are the people you would be chatting with about this posting.
+    // If its your posting, stakeholders would be the followers.
+    // If its a posting your following, stakeholders would just be the owner.
     if (!this.state.listingLoaded) return <Loading />;
+    const { listing, isMyListing } = this.state;
+    let stakeholders = [];
+    if (isMyListing) {
+      stakeholders = listing.followers;
+    } else {
+      stakeholders = listing.creatorId;
+    }
+
     return (
       <div className="chat-page">
         <ChatHeader listing={this.state.listing} />
-        <ChatBox />
+        <ChatBox stakeholders={} />
       </div>
     );
   }
