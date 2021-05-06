@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './CreateListingPage.scss';
 import ListingForm from './../../components/molecules/ListingForm/ListingForm';
-import AddPicsIcon from './../../assets/icons/add_photo_alternate_black_24dp.svg';
-import DeleteIcon from './../../assets/icons/delete_forever_white_24dp.svg';
+import IconDelete from './../../components/atoms/IconDelete/IconDelete';
 import axios from 'axios';
 const { v4: uuidv4 } = require('uuid');
 
@@ -82,7 +81,7 @@ export class CreateListingPage extends Component {
 
   handleDeleteImage = (e) => {
     e.preventDefault();
-    const deleteIndex = e.target.dataset.index;
+    const deleteIndex = e.target.parentElement.parentElement.dataset.index;
     const listing = { ...this.state.listing };
     listing.images.splice(deleteIndex, 1);
     this.setState({ listing });
@@ -99,24 +98,14 @@ export class CreateListingPage extends Component {
             onChange={this.onPhotoChangeHandler}
             className="create-listing-page__add-photos-label"
           ></input>
-          {/* <img
-            onClick={this.onPhotoUploadHandler}
-            className="create-listing-page__add-photos-icon"
-            src={AddPicsIcon}
-            alt="Add photos"
-          /> */}
           <div className="create-listing-page__upload-images">
             {this.state.listing.images.map((image, i) => {
               return (
                 <figure key={uuidv4()} className="create-listing-page__upload-figure">
                   <img className="create-listing-page__upload-image" src={this.state.listing.images[i]} alt="1" />
-                  <img
-                    data-index={i}
-                    onClick={this.handleDeleteImage}
-                    src={DeleteIcon}
-                    alt="Delete"
-                    className="create-listing-page__delete-image"
-                  />
+                  <div data-index={i} onClick={this.handleDeleteImage} className="create-listing-page__delete-image">
+                    <IconDelete fill="#f44034" />
+                  </div>
                 </figure>
               );
             })}

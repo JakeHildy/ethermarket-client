@@ -1,0 +1,11 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+.chat-box {
+  width: 100%;
+  height: 60vw;
+  border: $separator-line;
+  margin-top: $extra-small;
+  border-radius: 5px;
+}

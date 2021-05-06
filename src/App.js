@@ -23,7 +23,7 @@ class App extends Component {
             <Route path="/home" component={HomePage} />
             <Route path="/create" component={CreateListingPage} />
             <Route path="/edit/:id" component={EditListingPage} />
-            <Route path="/chat" component={ChatPage} />
+            <Route path="/chat/:id" component={ChatPage} />
             <Route path="/listing/:id" component={ListingPage} />
             <Redirect from="/" to="/browse" />
           </Switch>

@@ -11,7 +11,6 @@ export class ListingPage extends Component {
   state = {
     listing: null,
     listingLoaded: false,
-    conversionRate: 3000,
     myListing: false,
   };
 
@@ -84,7 +83,7 @@ export class ListingPage extends Component {
     if (!this.state.listingLoaded) return <Loading />;
     return (
       <div className="listing-page">
-        <ListingHeader listing={this.state.listing} conversionRate={this.state.conversionRate} />
+        <ListingHeader listing={this.state.listing} />
         <div className="listing-page__info-container">
           <div className="listing-page__creator-info">
             <ListingCreatorInfo listing={this.state.listing} />

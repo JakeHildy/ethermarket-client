@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import './EditListingPage.scss';
 import ListingForm from './../../components/molecules/ListingForm/ListingForm';
 import Loading from './../../components/molecules/Loading/Loading';
-import AddPicsIcon from './../../assets/icons/add_photo_alternate_black_24dp.svg';
-import DeleteIcon from './../../assets/icons/delete_forever_white_24dp.svg';
+import IconDelete from './../../components/atoms/IconDelete/IconDelete';
 import axios from 'axios';
 const { v4: uuidv4 } = require('uuid');
 
@@ -101,8 +100,7 @@ export class EditListingPage extends Component {
 
   handleDeleteImage = (e) => {
     e.preventDefault();
-    console.log('deleting image', e.target.dataset.index);
-    const deleteIndex = e.target.dataset.index;
+    const deleteIndex = e.target.parentElement.parentElement.dataset.index;
     const listing = { ...this.state.listing };
     listing.images.splice(deleteIndex, 1);
     this.setState({ listing });
@@ -135,24 +133,14 @@ export class EditListingPage extends Component {
             onChange={this.onPhotoChangeHandler}
             className="edit-listing-page__add-photos-label"
           ></input>
-          {/* <img
-            onClick={this.onPhotoUploadHandler}
-            className="edit-listing-page__add-photos-icon"
-            src={AddPicsIcon}
-            alt="Add"
-          /> */}
           <div className="edit-listing-page__upload-images">
             {this.state.listing.images.map((image, i) => {
               return (
                 <figure key={uuidv4()} className="edit-listing-page__upload-figure">
                   <img className="edit-listing-page__upload-image" src={this.state.listing.images[i]} alt="1" />
-                  <img
-                    data-index={i}
-                    onClick={this.handleDeleteImage}
-                    src={DeleteIcon}
-                    alt="Delete"
-                    className="edit-listing-page__delete-image"
-                  />
+                  <div data-index={i} onClick={this.handleDeleteImage} className="edit-listing-page__delete-image">
+                    <IconDelete fill="#f44034" />
+                  </div>
                 </figure>
               );
             })}

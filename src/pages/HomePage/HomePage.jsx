@@ -74,7 +74,7 @@ export class HomePage extends Component {
   };
 
   handleChatLink = (id) => {
-    console.log('TODO: go to chat', id);
+    this.props.history.push(`/chat/${id}`);
   };
 
   handleLogout = (e) => {

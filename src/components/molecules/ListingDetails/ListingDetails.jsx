@@ -1,6 +1,5 @@
 import React from 'react';
 import './ListingDetails.scss';
-import BikeIcon from './../../../assets/icons/pedal_bike_black_24dp.svg';
 
 function ListingDetails({ listing }) {
   return (

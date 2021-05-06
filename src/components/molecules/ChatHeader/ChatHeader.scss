@@ -1,0 +1,62 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  padding: $tiny 0;
+  border-bottom: $separator-line;
+  height: min(20vw, 10rem);
+
+  &__figure {
+    overflow: hidden;
+    border-radius: 5px;
+    height: 100%;
+    width: min(20vw, 10rem);
+    margin-right: $extra-small;
+    cursor: pointer;
+  }
+
+  &__img {
+    @include image;
+  }
+
+  &__title {
+    font-size: 1.7rem;
+    font-weight: normal;
+    margin-bottom: 0.4rem;
+    cursor: pointer;
+
+    @include tablet {
+      font-size: 1.9rem;
+    }
+  }
+
+  &__price {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+  }
+
+  &__price-icon {
+    margin-right: $tiny;
+    align-self: start;
+  }
+
+  &__list-price {
+    font-size: 1.3rem;
+    margin-bottom: 0.2rem;
+    @include tablet {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__local-price {
+    font-size: 1.1rem;
+    color: $color-light-accent;
+    @include tablet {
+      font-size: 1.2rem;
+    }
+  }
+}
