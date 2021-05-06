@@ -43,26 +43,30 @@ export class HomePage extends Component {
   populateFollowingListings = () => {
     const ids = this.state.following;
     const followedListings = [];
-    ids.forEach((id, i) => {
-      axios
-        .get(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}/${id}`)
-        .then((res) => {
-          // If the listing exists, push it to the followedListings Array.
-          if (res.data.data.listing) {
-            followedListings.push(res.data.data.listing);
-          }
-          if (i >= ids.length - 1) {
-            this.setState({ followedListings }, () => {
-              setTimeout(() => {
-                this.setState({ followedListingsLoaded: true });
-              }, 100);
-            });
-          }
-        })
-        .catch((err) => {
-          console.log(`💣 === ERROR GETTING LISTING (HomePage.jsx) === 💣`, err);
-        });
-    });
+    if (ids.length > 0) {
+      ids.forEach((id, i) => {
+        axios
+          .get(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}/${id}`)
+          .then((res) => {
+            // If the listing exists, push it to the followedListings Array.
+            if (res.data.data.listing) {
+              followedListings.push(res.data.data.listing);
+            }
+            if (i >= ids.length - 1) {
+              this.setState({ followedListings }, () => {
+                setTimeout(() => {
+                  this.setState({ followedListingsLoaded: true });
+                }, 100);
+              });
+            }
+          })
+          .catch((err) => {
+            console.log(`💣 === ERROR GETTING LISTING (HomePage.jsx) === 💣`, err);
+          });
+      });
+    } else {
+      this.setState({ followedListingsLoaded: true });
+    }
   };
 
   handleDetailLink = (id) => {
