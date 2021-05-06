@@ -38,7 +38,7 @@ function Filters({ minPrice, maxPrice, currency, category, handleChange, handleS
           <DropDownField
             name="currency"
             label="Currency"
-            options={currencies}
+            options={['All', ...currencies]}
             value={currency}
             onChange={handleChange}
             error=""
@@ -48,7 +48,7 @@ function Filters({ minPrice, maxPrice, currency, category, handleChange, handleS
           <DropDownField
             name="category"
             label="Category"
-            options={categories}
+            options={['Any', ...categories]}
             value={category}
             onChange={handleChange}
             error=""

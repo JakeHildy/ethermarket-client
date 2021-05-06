@@ -16,8 +16,8 @@ class BrowsePage extends Component {
     categories: categories,
     minPrice: '',
     maxPrice: '',
-    currency: 'ETH',
-    category: '',
+    currency: 'All',
+    category: 'Any',
   };
 
   componentDidMount = () => {
@@ -42,7 +42,29 @@ class BrowsePage extends Component {
 
   handleSearch = (e) => {
     e.preventDefault();
-    console.log('handleSearch');
+    const { minPrice, maxPrice, currency, category } = this.state;
+    let EP = `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}?`;
+    if (minPrice) {
+      EP += `price[gte]=${minPrice}`;
+    }
+    if (maxPrice) {
+      if (minPrice) EP += '&';
+      EP += `price[lte]=${maxPrice}`;
+    }
+    if (currency !== 'All') {
+      if (minPrice || maxPrice) EP += '&';
+      EP += `listCurrency=${currency}`;
+    }
+    if (category !== 'Any') {
+      if (minPrice || maxPrice || currency !== 'All') EP += '&';
+      EP += `category=${category.replace(' ', '%20')}`;
+    }
+
+    axios.get(EP).then((response) => {
+      this.setState({
+        listings: response.data.data.listings,
+      });
+    });
   };
 
   handleReset = (e) => {
