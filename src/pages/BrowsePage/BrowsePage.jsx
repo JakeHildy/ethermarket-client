@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './BrowsePage.scss';
 import SearchField from './../../components/atoms/SearchField/SearchField';
+import Loading from './../../components/molecules/Loading/Loading';
 import Listing from './../../components/atoms/Listing/Listing';
 import NoResultsFound from './../../components/atoms/NoResultsFound/NoResultsFound';
 import Filters from './../../components/molecules/Filters/Filters';
@@ -82,7 +83,7 @@ class BrowsePage extends Component {
   };
 
   render() {
-    if (!this.state.listingsLoaded) return null;
+    if (!this.state.listingsLoaded) return <Loading />;
     const { listings, searchStr } = this.state;
     const filteredListings = listings.filter((listing) =>
       listing.title.toLowerCase().includes(searchStr.toLowerCase())

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './EditListingPage.scss';
 import ListingForm from './../../components/molecules/ListingForm/ListingForm';
+import Loading from './../../components/molecules/Loading/Loading';
 import AddPicsIcon from './../../assets/icons/add_photo_alternate_black_24dp.svg';
 import DeleteIcon from './../../assets/icons/delete_forever_white_24dp.svg';
 import axios from 'axios';
@@ -123,7 +124,7 @@ export class EditListingPage extends Component {
   };
 
   render() {
-    if (!this.state.listingLoaded) return null;
+    if (!this.state.listingLoaded) return <Loading />;
     return (
       <div className="edit-listing-page">
         <h1 className="edit-listing-page__title">Edit Listing</h1>

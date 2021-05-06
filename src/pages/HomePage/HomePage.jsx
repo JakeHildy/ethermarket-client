@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './HomePage.scss';
 import axios from 'axios';
+import Loading from './../../components/molecules/Loading/Loading';
 import ProfileIcon from './../../assets/icons/account_circle_black_24dp.svg';
 import CreateNewIcon from './../../assets/icons/add_circle_black_24dp.svg';
 import StarRating from './../../components/atoms/StarRating/StarRating';
@@ -83,7 +84,7 @@ export class HomePage extends Component {
   };
 
   render() {
-    if (!this.state.listingsLoaded || !this.state.followedListingsLoaded) return null;
+    if (!this.state.listingsLoaded || !this.state.followedListingsLoaded) return <Loading />;
     return (
       <div className="home-page">
         <div className="home-page__user-info">

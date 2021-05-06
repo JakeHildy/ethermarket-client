@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './ListingPage.scss';
 import ListingHeader from './../../components/molecules/ListingHeader/ListingHeader';
+import Loading from './../../components/molecules/Loading/Loading';
 import ListingCreatorInfo from './../../components/molecules/ListingCreatorInfo/ListingCreatorInfo';
 import ListingDetails from './../../components/molecules/ListingDetails/ListingDetails';
 import ButtonPrimary from './../../components/atoms/ButtonPrimary/ButtonPrimary';
@@ -80,7 +81,7 @@ export class ListingPage extends Component {
   };
 
   render() {
-    if (!this.state.listingLoaded) return null;
+    if (!this.state.listingLoaded) return <Loading />;
     return (
       <div className="listing-page">
         <ListingHeader listing={this.state.listing} conversionRate={this.state.conversionRate} />

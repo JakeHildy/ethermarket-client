@@ -1,0 +1,16 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+.loading {
+  height: max(40vw, 30rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__logo {
+    margin-bottom: $extra-small;
+    width: 5rem;
+  }
+}
