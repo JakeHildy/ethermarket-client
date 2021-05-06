@@ -5,29 +5,88 @@
 .filters {
   margin-bottom: $extra-small;
 
+  @include tablet {
+    margin-right: $small;
+  }
+  @include desktop {
+    margin-right: $medium;
+    width: 25rem;
+  }
+
   &__title {
+    display: flex;
+    align-items: center;
+  }
+
+  &__title-text {
     font-size: 1.7rem;
-    margin-bottom: $tiny;
+    margin-right: $tiny;
+
+    @include tablet {
+      font-size: 2.1rem;
+      margin-bottom: $extra-small;
+    }
+  }
+
+  &__toggle-icon {
+    cursor: pointer;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__container {
+    display: none;
+
+    @include tablet {
+      display: block;
+    }
+
+    &--shown {
+      display: block;
+    }
   }
 
   &__price {
     display: flex;
 
+    @include tablet {
+      flex-direction: column;
+    }
+
     &--min {
       padding-right: $tiny;
+
+      @include tablet {
+        padding-right: 0;
+      }
     }
 
     &--max {
       padding-left: $tiny;
+
+      @include tablet {
+        padding-left: 0;
+      }
     }
   }
 
   &__dropdowns {
     display: flex;
 
+    @include tablet {
+      flex-direction: column;
+    }
+
     &--currency {
       width: 30%;
       padding-right: $extra-small;
+
+      @include tablet {
+        width: 100%;
+        padding-right: 0;
+      }
     }
 
     &--category {
@@ -37,12 +96,28 @@
 
   &__buttons {
     display: flex;
+
+    @include tablet {
+      flex-direction: column;
+    }
     &--search {
       width: 50%;
+      padding-left: $tiny;
+
+      @include tablet {
+        width: 100%;
+        padding-left: 0;
+      }
     }
     &--reset {
-      padding-right: $extra-small;
+      padding-right: $tiny;
       width: 50%;
+
+      @include tablet {
+        width: 100%;
+        padding-right: 0;
+        margin-bottom: $tiny;
+      }
     }
   }
 }

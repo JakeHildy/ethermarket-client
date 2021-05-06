@@ -41,7 +41,7 @@ class BrowsePage extends Component {
   };
 
   handleSearch = (e) => {
-    e.preventDefault();
+    if (!!e) e.preventDefault();
     const { minPrice, maxPrice, currency, category } = this.state;
     let EP = `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}?`;
     if (minPrice) {
@@ -68,8 +68,17 @@ class BrowsePage extends Component {
   };
 
   handleReset = (e) => {
-    e.preventDefault();
-    console.log('handleReset');
+    if (!!e) e.preventDefault();
+    this.setState(
+      {
+        searchStr: '',
+        minPrice: '',
+        maxPrice: '',
+        currency: 'All',
+        category: 'Any',
+      },
+      this.handleSearch
+    );
   };
 
   render() {
@@ -79,20 +88,18 @@ class BrowsePage extends Component {
         <div className="browse-page__search-bar">
           <SearchField name="searchStr" value={this.state.searchStr} onChange={this.handleChange} />
         </div>
-        <div className="browse-page__filters">
-          <Filters
-            minPrice={this.state.minPrice}
-            maxPrice={this.state.maxPrice}
-            currency={this.state.currency}
-            category={this.state.category}
-            handleChange={this.handleChange}
-            handleSearch={this.handleSearch}
-            handleReset={this.handleReset}
-          />
-        </div>
+
         <div className="browse-page__container">
-          <div className="browse-page__categories">
-            <Categories categories={this.state.categories} handleChange={this.handleCategoryChange} />
+          <div className="browse-page__filters">
+            <Filters
+              minPrice={this.state.minPrice}
+              maxPrice={this.state.maxPrice}
+              currency={this.state.currency}
+              category={this.state.category}
+              handleChange={this.handleChange}
+              handleSearch={this.handleSearch}
+              handleReset={this.handleReset}
+            />
           </div>
           <div className="browse-page__listings">
             {this.state.listings.map((listing) => (

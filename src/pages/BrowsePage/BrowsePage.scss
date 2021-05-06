@@ -22,6 +22,11 @@
 
   &__container {
     display: flex;
+    flex-direction: column;
+
+    @include tablet {
+      flex-direction: row;
+    }
   }
 
   &__listings {
