@@ -19,7 +19,7 @@ class Filters extends Component {
   };
 
   render() {
-    const { minPrice, maxPrice, currency, category, handleChange, handleSearch, handleReset } = this.props;
+    const { minPrice, maxPrice, currency, category, handleChange, handleFilter, handleReset } = this.props;
     const { shown } = this.state;
     return (
       <div className="filters">
@@ -83,7 +83,7 @@ class Filters extends Component {
               <ButtonSecondary label="Reset" handleClick={handleReset} />
             </div>
             <div className="filters__buttons--search">
-              <ButtonPrimary label="Search" handleClick={handleSearch} />
+              <ButtonPrimary label="Search" handleClick={handleFilter} />
             </div>
           </div>
         </div>

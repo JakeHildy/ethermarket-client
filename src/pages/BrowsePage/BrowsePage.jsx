@@ -12,7 +12,6 @@ class BrowsePage extends Component {
     searchStr: '',
     listings: [],
     listingsLoaded: false,
-    categorySort: '',
     categories: categories,
     minPrice: '',
     maxPrice: '',
@@ -35,12 +34,12 @@ class BrowsePage extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleCategoryChange = (e) => {
-    e.preventDefault();
-    this.setState({ categorySort: e.target.dataset.category });
-  };
+  // handleSearch = (e) => {
+  //   e.preventDefault();
+  //   console.log('Handle Search');
+  // };
 
-  handleSearch = (e) => {
+  handleFilter = (e) => {
     if (!!e) e.preventDefault();
     const { minPrice, maxPrice, currency, category } = this.state;
     let EP = `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}?`;
@@ -77,12 +76,16 @@ class BrowsePage extends Component {
         currency: 'All',
         category: 'Any',
       },
-      this.handleSearch
+      this.handleFilter
     );
   };
 
   render() {
     if (!this.state.listingsLoaded) return null;
+    const { listings, searchStr } = this.state;
+    const filteredListings = listings.filter((listing) =>
+      listing.title.toLowerCase().includes(searchStr.toLowerCase())
+    );
     return (
       <div className="browse-page">
         <div className="browse-page__search-bar">
@@ -97,14 +100,16 @@ class BrowsePage extends Component {
               currency={this.state.currency}
               category={this.state.category}
               handleChange={this.handleChange}
-              handleSearch={this.handleSearch}
+              handleFilter={this.handleFilter}
               handleReset={this.handleReset}
             />
           </div>
           <div className="browse-page__listings">
-            {this.state.listings.map((listing) => (
-              <Listing key={listing._id} listing={listing} />
-            ))}
+            {filteredListings.length > 0 ? (
+              filteredListings.map((listing) => <Listing key={listing._id} listing={listing} />)
+            ) : (
+              <h2>No Results Found</h2>
+            )}
           </div>
         </div>
       </div>

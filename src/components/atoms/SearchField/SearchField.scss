@@ -13,6 +13,7 @@
     outline: none;
     border-radius: 20rem;
     border: 1px solid $color-dark-accent;
+    font-family: inherit;
 
     @include tablet {
       height: 3.8rem;
