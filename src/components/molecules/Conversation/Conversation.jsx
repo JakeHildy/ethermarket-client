@@ -35,7 +35,7 @@ export class Conversation extends Component {
         style={{ transform: `translateY(-${conversationOffset}px)` }}
       >
         {messages.map((message) => {
-          <Message text="Perfect! :)" mine={true} />;
+          return <Message text="Perfect! :)" mine={true} />;
         })}
         <Message text="Hey, are you still interested?" mine={false} />
         <Message text="Yup, can you meet on Tuesday at 8pm?" mine={true} />
