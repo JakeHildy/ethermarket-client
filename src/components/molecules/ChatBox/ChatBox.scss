@@ -28,7 +28,7 @@
     }
   }
 
-  &__message-area {
+  &__conversation {
     border-top: $separator-line;
     border-right: $separator-line;
     border-bottom: $separator-line;
@@ -36,5 +36,7 @@
     border-radius: 0 5px 5px 5px;
     width: 100%;
     height: 60vw;
+    padding: $extra-tiny;
+    overflow: hidden;
   }
 }

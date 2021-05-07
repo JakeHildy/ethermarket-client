@@ -1,0 +1,20 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+.message {
+  font-size: 1.2rem;
+  font-weight: normal;
+  background-color: $color-page;
+  padding: $extra-tiny $tiny;
+  border-radius: 8px;
+  border: 1px solid $color-button-info;
+  margin-bottom: $tiny;
+  width: 80%;
+  box-shadow: $shadow-message;
+
+  &--mine {
+    align-self: flex-end;
+    background-color: #d7e3bf;
+  }
+}

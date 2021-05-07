@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './ChatBox.scss';
+import Conversation from './../../molecules/Conversation/Conversation';
 
 export class ChatBox extends Component {
   state = { activeId: 0 };
@@ -34,7 +35,9 @@ export class ChatBox extends Component {
             );
           })}
         </div>
-        <div className="chat-box__message-area"></div>
+        <div className="chat-box__conversation">
+          <Conversation />
+        </div>
       </div>
     );
   }

@@ -78,7 +78,6 @@ export class ChatPage extends Component {
     } else {
       stakeholders = [creator];
     }
-    console.log('Stakeholders: ', stakeholders);
 
     return (
       <div className="chat-page">
