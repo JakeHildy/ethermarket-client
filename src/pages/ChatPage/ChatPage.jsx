@@ -76,15 +76,14 @@ export class ChatPage extends Component {
     if (isMyListing) {
       stakeholders = followers;
     } else {
-      stakeholders = creator;
+      stakeholders = [creator];
     }
     console.log('Stakeholders: ', stakeholders);
 
     return (
       <div className="chat-page">
         <ChatHeader listing={listing} />
-        <h2>Seller: {`${creator.username}`}</h2>
-        {/* <ChatBox stakeholders={} /> */}
+        <ChatBox stakeholders={stakeholders} />
       </div>
     );
   }
