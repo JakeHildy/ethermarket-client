@@ -22,9 +22,9 @@ export class Conversation extends Component {
     }
   };
 
-  componentDidUpdate = () => {};
+  // componentDidUpdate = () => {};
 
-  addMessage = () => {};
+  // addMessage = () => {};
 
   render() {
     const { conversationOffset, messages } = this.state;
