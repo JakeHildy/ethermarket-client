@@ -16,6 +16,7 @@ function InputField({ name, label, value, placeholder, onChange, error, type }) 
         onChange={onChange}
         placeholder={placeholder}
         type={type || 'text'}
+        autoComplete="false"
       />
       {error && (
         <div className="error">

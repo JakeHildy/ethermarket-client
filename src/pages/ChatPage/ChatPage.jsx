@@ -82,7 +82,7 @@ export class ChatPage extends Component {
     return (
       <div className="chat-page">
         <ChatHeader listing={listing} />
-        <ChatBox stakeholders={stakeholders} />
+        <ChatBox stakeholders={stakeholders} listingId={listing._id} creatorUsername={this.state.creator.username} />
       </div>
     );
   }

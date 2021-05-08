@@ -5,7 +5,13 @@ import InputField from './../../atoms/InputField/InputField';
 import IconSend from './../../atoms/IconSend/IconSend';
 
 export class ChatBox extends Component {
-  state = { activeId: 0, message: '' };
+  state = {
+    activeId: 0,
+    message: '',
+    stakeholders: this.props.stakeholders,
+    listingId: this.props.listingId,
+    creatorUsername: this.props.creatorUsername,
+  };
 
   chatTabClicked = (e) => {
     e.preventDefault();
@@ -31,8 +37,7 @@ export class ChatBox extends Component {
   };
 
   render() {
-    const { stakeholders } = this.props;
-    const { activeId } = this.state;
+    const { activeId, stakeholders, listingId, creatorUsername } = this.state;
     return (
       <div className="chat-box">
         <div className="chat-box__tabs">
@@ -50,9 +55,13 @@ export class ChatBox extends Component {
           })}
         </div>
         <div className="chat-box__conversation">
-          <Conversation />
+          <Conversation
+            listingId={listingId}
+            creatorUsername={creatorUsername}
+            stakeholderUsername={stakeholders[activeId].username}
+          />
         </div>
-        <form className="chat-box__message-form" onSubmit={this.handleMessageSend}>
+        <form className="chat-box__message-form" onSubmit={this.handleMessageSend} autoComplete="false">
           <div className="chat-box__message-input">
             <InputField
               name="message"

@@ -98,6 +98,7 @@ export class LoginPage extends Component {
             if (res.status === 200) {
               sessionStorage.authToken = res.data.token;
               sessionStorage.userId = res.data.id;
+              sessionStorage.username = res.data.username;
               this.props.history.push('/home');
             }
           })
