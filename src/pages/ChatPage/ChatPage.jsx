@@ -16,7 +16,7 @@ export class ChatPage extends Component {
     followersLoaded: false,
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     const listingsEP = `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}`;
     const usersEP = `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_USER_EP}`;
     axios
@@ -48,7 +48,7 @@ export class ChatPage extends Component {
       .catch((err) => {
         console.log(`💣 === ERROR GETTING LISTING FOLLOWERS (ChatPage.jsx) === 💣`, err);
       });
-  };
+  }
 
   getCreatorInfo = () => {
     const usersEP = `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_USER_EP}`;

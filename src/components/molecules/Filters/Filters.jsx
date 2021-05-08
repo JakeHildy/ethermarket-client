@@ -38,7 +38,7 @@ class Filters extends Component {
             <div className="filters__price--min">
               <InputField
                 name="minPrice"
-                label="Min"
+                label="Min Price"
                 value={minPrice}
                 placeholder="Min..."
                 onChange={handleChange}
@@ -48,7 +48,7 @@ class Filters extends Component {
             <div className="filters__price--max">
               <InputField
                 name="maxPrice"
-                label="Max"
+                label="Max Price"
                 value={maxPrice}
                 placeholder="Max..."
                 onChange={handleChange}
