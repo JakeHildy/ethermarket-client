@@ -14,7 +14,7 @@ export class ListingPage extends Component {
     myListing: false,
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     const listingsEP = `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}`;
     axios
       .get(`${listingsEP}/${this.props.match.params.id}`)
@@ -30,7 +30,7 @@ export class ListingPage extends Component {
       .catch((err) => {
         console.log(`💣 === ERROR GETTING LISTING (ListingPage.jsx) === 💣`, err);
       });
-  };
+  }
 
   followPost = () => {
     const token = sessionStorage.getItem('authToken');
@@ -71,8 +71,8 @@ export class ListingPage extends Component {
             });
         }
 
-        // TODO: PUSH USER TO THAT CHAT PAGE
-        console.log('TODO: push user to corresponding chat page');
+        // PUSH USER TO THAT CHAT PAGE
+        this.props.history.push(`/chat/${this.state.listing._id}`);
       })
       .catch((err) => {
         console.log(`💣 === ERROR USER PROFILE (ListingPage.jsx) === 💣`, err);

@@ -13,14 +13,14 @@ export class Conversation extends Component {
     messages: [],
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     const conversationHeight = this.conversationRef.current.clientHeight;
     const containerHeight = this.conversationRef.current.parentElement.clientHeight;
     console.log(conversationHeight, containerHeight);
     if (conversationHeight > containerHeight) {
       this.setState({ conversationOffset: conversationHeight - containerHeight });
     }
-  };
+  }
 
   // componentDidUpdate = () => {};
 
