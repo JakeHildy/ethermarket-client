@@ -10,7 +10,10 @@ export class Conversation extends Component {
 
   state = {
     conversationOffset: 0,
-    messages: [],
+    messages: [
+      { sender: '6095cf137a04540004a4cc54', message: 'Hey, are you still interested?', timestamp: Date.now() },
+      { sender: '60957a1e541732f194844cd7', message: 'Yup! can you meed on Tuesday at 8pm?', timestamp: Date.now() },
+    ],
   };
 
   componentDidMount() {
@@ -27,6 +30,7 @@ export class Conversation extends Component {
 
   render() {
     const { conversationOffset, messages } = this.state;
+    const userId = sessionStorage.getItem('userId');
     return (
       <>
         <div
@@ -35,7 +39,7 @@ export class Conversation extends Component {
           style={{ transform: `translateY(-${conversationOffset}px)` }}
         >
           {messages.map((message, i) => {
-            return <Message key={i} text="Perfect! :)" mine={true} />;
+            return <Message key={i} text={message.message} mine={message.sender === userId} />;
           })}
         </div>
       </>
