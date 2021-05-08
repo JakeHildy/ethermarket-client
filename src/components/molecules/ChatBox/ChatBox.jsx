@@ -36,7 +36,7 @@ export class ChatBox extends Component {
   };
 
   handleMessageSend = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     if (this.state.message === '') return;
     console.log(this.state.message);
     // Send message to backend:
