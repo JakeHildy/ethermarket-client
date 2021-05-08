@@ -3,6 +3,7 @@ import './ChatBox.scss';
 import Conversation from './../../molecules/Conversation/Conversation';
 import InputField from './../../atoms/InputField/InputField';
 import IconSend from './../../atoms/IconSend/IconSend';
+import axios from 'axios';
 
 export class ChatBox extends Component {
   state = {
@@ -11,6 +12,7 @@ export class ChatBox extends Component {
     stakeholders: this.props.stakeholders,
     listingId: this.props.listingId,
     creatorUsername: this.props.creatorUsername,
+    conversationId: null,
   };
 
   chatTabClicked = (e) => {
@@ -29,10 +31,22 @@ export class ChatBox extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  setConversationId = (id) => {
+    this.setState({ conversationId: id });
+  };
+
   handleMessageSend = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (this.state.message === '') return;
     console.log(this.state.message);
+    // Send message to backend:
+    axios.post(
+      `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_CONVERSATION_EP}/post/${this.state.conversationId}`,
+      {
+        senderId: sessionStorage.getItem('userId'),
+        message: this.state.message,
+      }
+    );
     this.setState({ message: '' });
   };
 
@@ -59,6 +73,7 @@ export class ChatBox extends Component {
             listingId={listingId}
             creatorUsername={creatorUsername}
             stakeholderUsername={stakeholders[activeId].username}
+            setConversationId={this.setConversationId}
           />
         </div>
         <form className="chat-box__message-form" onSubmit={this.handleMessageSend} autoComplete="false">

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Conversation.scss';
 import Message from './../../atoms/Message/Message';
+import Loading from './../Loading/Loading';
 import axios from 'axios';
 
 export class Conversation extends Component {
@@ -15,13 +16,11 @@ export class Conversation extends Component {
     creatorUsername: this.props.creatorUsername,
     stakeholderUsername: this.props.stakeholderUsername,
     conversation: null,
-    messages: [
-      { sender: '6095cf137a04540004a4cc54', message: 'Hey, are you still interested?', timestamp: Date.now() },
-      { sender: '60957a1e541732f194844cd7', message: 'Yup! can you meed on Tuesday at 8pm?', timestamp: Date.now() },
-    ],
+    conversationLoaded: false,
   };
 
   componentDidMount() {
+    const { setConversationId } = this.props;
     const { listingId, creatorUsername, stakeholderUsername } = this.state;
     const myUsername = sessionStorage.getItem('username');
     const otherPerson = creatorUsername === myUsername ? stakeholderUsername : myUsername;
@@ -35,13 +34,16 @@ export class Conversation extends Component {
             followerUsername: otherPerson,
           })
           .then((res) => {
-            this.setState({ conversation: res.data.message });
+            this.setState({ conversation: res.data.message, conversationLoaded: true }, () => {
+              setConversationId(this.state.conversation._id);
+            });
           });
       } else {
-        this.setState({ conversation: res.data.data[0] });
+        this.setState({ conversation: res.data.data[0], conversationLoaded: true }, () => {
+          setConversationId(this.state.conversation._id);
+        });
       }
     });
-    this.adjustConversationPosition();
   }
 
   adjustConversationPosition = () => {
@@ -57,7 +59,8 @@ export class Conversation extends Component {
   // addMessage = () => {};
 
   render() {
-    const { conversationOffset, messages } = this.state;
+    if (!this.state.conversationLoaded) return <Loading />;
+    const { conversationOffset, conversation } = this.state;
     const userId = sessionStorage.getItem('userId');
     return (
       <>
@@ -66,8 +69,8 @@ export class Conversation extends Component {
           ref={this.conversationRef}
           style={{ transform: `translateY(-${conversationOffset}px)` }}
         >
-          {messages.map((message, i) => {
-            return <Message key={i} text={message.message} mine={message.sender === userId} />;
+          {conversation.conversationHistory.map((message, i) => {
+            return <Message key={i} text={message.message} mine={message.senderId === userId} />;
           })}
         </div>
       </>
