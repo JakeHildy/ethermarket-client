@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './ChatBox.scss';
 import Conversation from './../../molecules/Conversation/Conversation';
+import InputField from './../../atoms/InputField/InputField';
+import IconSend from './../../atoms/IconSend/IconSend';
 
 export class ChatBox extends Component {
-  state = { activeId: 0 };
+  state = { activeId: 0, message: '' };
 
   chatTabClicked = (e) => {
     e.preventDefault();
@@ -14,6 +16,18 @@ export class ChatBox extends Component {
       id = e.target.dataset.id;
     }
     this.setState({ activeId: Number(id) });
+  };
+
+  handleChange = (e) => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleMessageSend = (e) => {
+    e.preventDefault();
+    if (this.state.message === '') return;
+    console.log(this.state.message);
+    this.setState({ message: '' });
   };
 
   render() {
@@ -38,6 +52,21 @@ export class ChatBox extends Component {
         <div className="chat-box__conversation">
           <Conversation />
         </div>
+        <form className="chat-box__message-form" onSubmit={this.handleMessageSend}>
+          <div className="chat-box__message-input">
+            <InputField
+              name="message"
+              label=""
+              value={this.state.message}
+              placeholder="Message..."
+              onChange={this.handleChange}
+              error=""
+            />
+          </div>
+          <button className="chat-box__message-send-button">
+            <IconSend fill={'#676b97'} />
+          </button>
+        </form>
       </div>
     );
   }

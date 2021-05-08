@@ -39,4 +39,23 @@
     padding: $extra-tiny;
     overflow: hidden;
   }
+
+  ////////////////////////////
+  // SEND MESSSAGE
+  &__message-form {
+    display: flex;
+  }
+
+  &__message-input {
+    flex: 1;
+    margin-right: $tiny;
+  }
+
+  &__message-send-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin-right: $tiny;
+    transform: translateY(-0.6rem);
+  }
 }
