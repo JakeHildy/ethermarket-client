@@ -3,6 +3,7 @@
 
 ///////////////////////////////
 // RESPONSIVE BREAKPOINTS
+
 @mixin tablet {
   @media (min-width: 768px) {
     @content;
@@ -52,7 +53,7 @@
 
 @mixin typo-listing-label {
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 600;
 
   @include tablet {
     font-size: 2rem;
@@ -60,11 +61,11 @@
 }
 
 @mixin typo-listing-price {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 400;
 
   @include tablet {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 }
 
@@ -79,7 +80,7 @@
 
 @mixin typo-heading-3 {
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 600;
 
   @include desktop {
     font-size: 2.2rem;
