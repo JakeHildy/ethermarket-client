@@ -64,4 +64,13 @@
   &__button-create {
     flex: 1;
   }
+
+  // === MAP ===
+  &__map-label {
+    @include typo-input-field-label;
+  }
+
+  &__map {
+    margin-bottom: $extra-small;
+  }
 }

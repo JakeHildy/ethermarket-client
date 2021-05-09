@@ -4,6 +4,7 @@ import InputField from './../../atoms/InputField/InputField';
 import TextArea from './../../atoms/TextArea/TextArea';
 import DropDownField from './../../atoms/DropDownField/DropDownField';
 import ButtonPrimary from './../../atoms/ButtonPrimary/ButtonPrimary';
+import Map from './../../atoms/Map/Map';
 import ButtonSecondary from './../../atoms/ButtonSecondary/ButtonSecondary';
 import ButtonDanger from './../../atoms/ButtonDanger/ButtonDanger';
 import categories from './../../../data/categories.json';
@@ -127,14 +128,6 @@ export class ListingForm extends Component {
           />
         </div>
         <div className="listing-form__container-bottom-right">
-          <InputField
-            name="location"
-            label="Location"
-            value={this.state.location}
-            placeholder="Enter Postal Code..."
-            onChange={this.handleChange}
-            error=""
-          />
           <TextArea
             name="description"
             label="Description *"
@@ -143,6 +136,11 @@ export class ListingForm extends Component {
             onChange={this.handleChange}
             error={this.state.descriptionError}
           />
+          <div className="listing-form__map">
+            <h4 className="listing-form__map-label">Location</h4>
+            <Map lat={49.2827} long={-123.1207} />
+          </div>
+
           <div className="listing-form__buttons">
             <div className="listing-form__button-cancel">
               <ButtonSecondary label="Cancel" handleClick={handleCancel} />
