@@ -4,6 +4,8 @@ import InputField from './../../atoms/InputField/InputField';
 import TextArea from './../../atoms/TextArea/TextArea';
 import DropDownField from './../../atoms/DropDownField/DropDownField';
 import ButtonPrimary from './../../atoms/ButtonPrimary/ButtonPrimary';
+import Loading from './../../molecules/Loading/Loading';
+import MapEdit from './../../atoms/MapEdit/MapEdit';
 import ButtonSecondary from './../../atoms/ButtonSecondary/ButtonSecondary';
 import ButtonDanger from './../../atoms/ButtonDanger/ButtonDanger';
 import categories from './../../../data/categories.json';
@@ -21,16 +23,43 @@ export class ListingForm extends Component {
     titleError: '',
     priceError: '',
     descriptionError: '',
+    userLocation: null,
+    currentMarkerLocation: null,
+    userLocationLoaded: false,
+    userLocationDenied: false,
   };
 
   componentDidMount() {
-    const { title, price, listCurrency, category, condition, location, description } = this.props.listing;
+    const { title, price, listCurrency, category, condition, description } = this.props.listing;
+    let { location } = this.props.listing;
+    // getCurrentPosition({success}, {error})
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          this.setState({
+            location: location ? location : { lat: latitude, long: longitude },
+            userLocation: { lat: latitude, long: longitude },
+            userLocationLoaded: true,
+          });
+        },
+        () => {
+          alert('Could not get your position');
+          this.setState({ userLocationDenied: true });
+        }
+      );
+    }
+
     this.setState({ title, price, listCurrency, category, condition, location, description });
   }
 
   handleChange = (e) => {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onMapMarkerMoved = ({ lat, lng }) => {
+    this.setState({ location: { lat, long: lng } });
   };
 
   attemptSubmit = (e) => {
@@ -75,7 +104,10 @@ export class ListingForm extends Component {
   };
 
   render() {
+    if (!this.state.userLocationLoaded && !this.state.userLocationDenied) return <Loading />;
     const { handleCancel, handleDelete } = this.props;
+    const { location } = this.state;
+
     return (
       <form className="listing-form__container-bottom">
         <div className="listing-form__container-bottom-left">
@@ -127,14 +159,6 @@ export class ListingForm extends Component {
           />
         </div>
         <div className="listing-form__container-bottom-right">
-          <InputField
-            name="location"
-            label="Location"
-            value={this.state.location}
-            placeholder="Enter Postal Code..."
-            onChange={this.handleChange}
-            error=""
-          />
           <TextArea
             name="description"
             label="Description *"
@@ -143,6 +167,11 @@ export class ListingForm extends Component {
             onChange={this.handleChange}
             error={this.state.descriptionError}
           />
+          <div className="listing-form__map">
+            <h4 className="listing-form__map-label">Location</h4>
+            <MapEdit onMarkerMoved={this.onMapMarkerMoved} lat={location.lat} long={location.long} />
+          </div>
+
           <div className="listing-form__buttons">
             <div className="listing-form__button-cancel">
               <ButtonSecondary label="Cancel" handleClick={handleCancel} />
