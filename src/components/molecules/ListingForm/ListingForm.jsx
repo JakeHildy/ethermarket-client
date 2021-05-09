@@ -4,6 +4,7 @@ import InputField from './../../atoms/InputField/InputField';
 import TextArea from './../../atoms/TextArea/TextArea';
 import DropDownField from './../../atoms/DropDownField/DropDownField';
 import ButtonPrimary from './../../atoms/ButtonPrimary/ButtonPrimary';
+import Loading from './../../molecules/Loading/Loading';
 import Map from './../../atoms/Map/Map';
 import ButtonSecondary from './../../atoms/ButtonSecondary/ButtonSecondary';
 import ButtonDanger from './../../atoms/ButtonDanger/ButtonDanger';
@@ -22,10 +23,27 @@ export class ListingForm extends Component {
     titleError: '',
     priceError: '',
     descriptionError: '',
+    userLocation: null,
+    userLocationLoaded: false,
+    userLocationDenied: false,
   };
 
   componentDidMount() {
     const { title, price, listCurrency, category, condition, location, description } = this.props.listing;
+    // getCurrentPosition({success}, {error})
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          this.setState({ userLocation: { lat: latitude, long: longitude }, userLocationLoaded: true });
+        },
+        () => {
+          alert('Could not get your position');
+          this.setState({ userLocationDenied: true });
+        }
+      );
+    }
+
     this.setState({ title, price, listCurrency, category, condition, location, description });
   }
 
@@ -76,6 +94,7 @@ export class ListingForm extends Component {
   };
 
   render() {
+    if (!this.state.userLocationLoaded && !this.state.userLocationDenied) return <Loading />;
     const { handleCancel, handleDelete } = this.props;
     return (
       <form className="listing-form__container-bottom">
@@ -138,7 +157,7 @@ export class ListingForm extends Component {
           />
           <div className="listing-form__map">
             <h4 className="listing-form__map-label">Location</h4>
-            <Map lat={49.2827} long={-123.1207} />
+            <Map lat={this.state.userLocation.lat} long={this.state.userLocation.long} />
           </div>
 
           <div className="listing-form__buttons">

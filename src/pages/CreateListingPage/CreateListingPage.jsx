@@ -76,7 +76,7 @@ export class CreateListingPage extends Component {
 
   handleCancel = (e) => {
     e.preventDefault();
-    console.log('Cancel');
+    this.props.history.goBack();
   };
 
   handleDeleteImage = (e) => {
