@@ -81,7 +81,7 @@ export class EditListingPage extends Component {
         listCurrency: data.listCurrency,
         category: data.category,
         condition: data.condition,
-        location: { lat: '41.40338', long: '2.17403' },
+        location: data.location,
         description: data.description,
         images: this.state.listing.images,
       })

@@ -1,0 +1,25 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+// === MAP ===
+.map-edit {
+  width: 100%;
+
+  &__container {
+    border-radius: 5px;
+    height: 60vw;
+    width: 91.4vw;
+    box-shadow: $shadow-img-gallery;
+
+    @include tablet {
+      height: 38vw;
+      width: 38vw;
+    }
+
+    @include desktop {
+      height: 28vw;
+      width: 28vw;
+    }
+  }
+}
