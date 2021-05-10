@@ -57,8 +57,6 @@ export class ChatPage extends Component {
       .catch((err) => {
         console.log(`💣 === ERROR GETTING LISTING FOLLOWERS (ChatPage.jsx) === 💣`, err);
       });
-
-    this.connectToEthereum();
   }
 
   connectToEthereum = async () => {
@@ -67,6 +65,7 @@ export class ChatPage extends Component {
       const web3 = new Web3(window.ethereum);
       const netId = await web3.eth.net.getId();
       const accounts = await web3.eth.getAccounts();
+      console.log(web3);
 
       //check if account is detected, then load balance & setStates.
       if (typeof accounts[0] !== 'undefined') {
@@ -99,6 +98,7 @@ export class ChatPage extends Component {
 
   handleTranfer = (e) => {
     e.preventDefault();
+    this.connectToEthereum();
     console.log('Handle Transfer TODO');
   };
 
