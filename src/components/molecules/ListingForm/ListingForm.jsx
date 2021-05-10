@@ -168,7 +168,7 @@ export class ListingForm extends Component {
             error={this.state.descriptionError}
           />
           <div className="listing-form__map">
-            <h4 className="listing-form__map-label">Location</h4>
+            <h4 className="listing-form__map-label">Location (Drag marker to edit)</h4>
             <MapEdit onMarkerMoved={this.onMapMarkerMoved} lat={location.lat} long={location.long} />
           </div>
 

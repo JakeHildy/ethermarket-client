@@ -8,9 +8,66 @@
 
   @include tablet {
     padding: $small $desktop-spacing;
+    display: flex;
   }
 
   @include desktop {
     margin: 0 auto;
+  }
+
+  &__top {
+    @include tablet {
+      width: 50%;
+      margin-right: $small;
+    }
+  }
+
+  &__conv-box {
+    @include tablet {
+      width: 50%;
+    }
+  }
+
+  &__header {
+  }
+
+  &__buttons {
+    margin: $small 0 $small 0;
+
+    @include tablet {
+      display: flex;
+    }
+
+    &--primary {
+      margin-bottom: $tiny;
+      @include tablet {
+        width: 50%;
+      }
+    }
+
+    &--secondary {
+      @include tablet {
+        width: 50%;
+        order: -1;
+        margin-right: $small;
+      }
+    }
+  }
+
+  &__account-info {
+    &--title {
+      @include typo-heading-2;
+      margin-bottom: $extra-small;
+    }
+
+    &--label {
+      @include typo-heading-3;
+      margin-bottom: $tiny;
+    }
+
+    &--text {
+      @include typo-heading-4;
+      margin-bottom: $extra-small;
+    }
   }
 }

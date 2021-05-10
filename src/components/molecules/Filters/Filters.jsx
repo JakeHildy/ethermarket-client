@@ -8,7 +8,6 @@ import categories from './../../../data/categories.json';
 import currencies from './../../../data/currencies.json';
 import ExpandMoreIcon from './../../../assets/icons/expand_more_black_24dp.svg';
 import ExpandLessIcon from './../../../assets/icons/expand_less_black_24dp.svg';
-import { render } from '@testing-library/react';
 
 class Filters extends Component {
   state = { shown: false };

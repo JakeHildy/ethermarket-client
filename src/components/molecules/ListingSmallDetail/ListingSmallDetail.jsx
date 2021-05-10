@@ -3,7 +3,6 @@ import axios from 'axios';
 import './ListingSmallDetail.scss';
 import CashIcon from './../../../assets/icons/local_atm_black_24dp.svg';
 import ChatIcon from './../../../assets/icons/chat_black_24dp.svg';
-import { render } from '@testing-library/react';
 
 class ListingSmallDetail extends Component {
   state = { listing: this.props.listing, usdPrice: null };

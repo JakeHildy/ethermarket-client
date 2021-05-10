@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import './MapEdit.scss';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 

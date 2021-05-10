@@ -4,7 +4,6 @@ import axios from 'axios';
 import Gallery from './../../atoms/Gallery/Gallery';
 import CashIcon from './../../../assets/icons/local_atm_black_24dp.svg';
 import { printTime } from '../../../utils/dateTime';
-import { getUSDPrice } from '../../../utils/curConversion';
 
 class ListingHeader extends Component {
   state = { listing: this.props.listing, usdPrice: null };

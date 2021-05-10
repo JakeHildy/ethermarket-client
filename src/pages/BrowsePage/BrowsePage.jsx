@@ -6,7 +6,6 @@ import Loading from './../../components/molecules/Loading/Loading';
 import Listing from './../../components/atoms/Listing/Listing';
 import NoResultsFound from './../../components/atoms/NoResultsFound/NoResultsFound';
 import Filters from './../../components/molecules/Filters/Filters';
-import Categories from './../../components/atoms/Categories/Categories';
 import categories from './../../data/categories.json';
 
 class BrowsePage extends Component {
