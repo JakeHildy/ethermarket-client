@@ -10,10 +10,13 @@ function Footer() {
     <div className="footer">
       <h2 className="footer__title">&copy; EtherMarket 2021 </h2>
       <div className="footer__links">
-        <Link to={'#'} className="footer__link footer__link--careers">
+        <Link to={'/about'} className="footer__link footer__link--careers">
+          About
+        </Link>
+        <Link to={'/careers'} className="footer__link footer__link--investors">
           Careers
         </Link>
-        <Link to={'#'} className="footer__link">
+        <Link to={'/investors'} className="footer__link">
           Investors
         </Link>
       </div>

@@ -13,6 +13,9 @@ import CreateListingPage from './pages/CreateListingPage/CreateListingPage';
 import EditListingPage from './pages/EditListingPage/EditListingPage';
 import ListingPage from './pages/ListingPage/ListingPage';
 import ChatPage from './pages/ChatPage/ChatPage';
+import CareersPage from './pages/CareersPage/CareersPage';
+import AboutPage from './pages/AboutPage/AboutPage';
+import InvestorsPage from './pages/InvestorsPage/InvestorsPage';
 
 class App extends Component {
   state = { showModal: false, modalText: '', modalCB: null };
@@ -36,6 +39,9 @@ class App extends Component {
             <Route path="/browse" component={BrowsePage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/home" component={HomePage} />
+            <Route path="/careers" component={CareersPage} />
+            <Route path="/about" component={AboutPage} />
+            <Route path="/investors" component={InvestorsPage} />
             <Route path="/create" component={CreateListingPage} />
             <Route
               path="/edit/:id"
