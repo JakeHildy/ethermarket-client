@@ -53,21 +53,4 @@
       }
     }
   }
-
-  &__account-info {
-    &--title {
-      @include typo-heading-2;
-      margin-bottom: $extra-small;
-    }
-
-    &--label {
-      @include typo-heading-3;
-      margin-bottom: $tiny;
-    }
-
-    &--text {
-      @include typo-heading-4;
-      margin-bottom: $extra-small;
-    }
-  }
 }
