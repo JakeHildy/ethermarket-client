@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import IconWallet from './../../atoms/IconWallet/IconWallet';
 import InputField from './../../atoms/InputField/InputField';
+import { toast } from 'react-toastify';
 import './Wallet.scss';
 import Web3 from 'web3';
 import { getNetwork } from './../../../utils/cryptoHelpers';
 import ButtonPrimary from './../../atoms/ButtonPrimary/ButtonPrimary';
+import EthLogo from './../../../assets/icons/eth-logo.png';
 
 export class Wallet extends Component {
-  state = { netId: null, account: null, balance: '0', web3: null, sendAmount: '', sendToAddress: '' };
+  state = { netId: null, account: null, balance: '0', web3: null, sendAmount: '', sendToAddress: '', sending: false };
 
   sendCrypto = async (e) => {
     e.preventDefault();
@@ -17,11 +19,27 @@ export class Wallet extends Component {
     console.log('sendToAddress', sendToAddress);
     web3.eth
       .sendTransaction({ from: account, to: sendToAddress, value: Web3.utils.toWei(sendAmount), chainId: netId })
-      .once('sending', (payload) => console.log('sending: ', payload))
-      .once('sent', (payload) => console.log('sent: ', payload))
-      .once('transactionHash', (hash) => console.log('hash: ', hash))
+      .once('sending', (payload) => {
+        console.log('sending: ', payload);
+      })
+      .once('sent', (payload) => {
+        console.log('sent: ', payload);
+      })
+      .once('transactionHash', (hash) => {
+        console.log('hash: ', hash);
+        this.setState({ sending: true });
+      })
+      .once('receipt', (receipt) => console.log('receipt: ', receipt))
+      .on('confirmation', (confNumber, receipt, latestBlockHash) => {
+        // console.log('confNumber: ', confNumber);
+        // console.log('receipt: ', receipt);
+        // console.log('latestBlockHash: ', latestBlockHash);
+        this.connectWallet();
+      })
+      .on('error', (error) => toast.success('Error Sending Ether'))
       .then((receipt) => {
-        console.log('receipt', receipt);
+        this.setState({ sending: false });
+        toast.success('Ether Sent!');
       });
   };
 
@@ -59,7 +77,7 @@ export class Wallet extends Component {
     const { listing } = this.props;
     const { price, listCurrency } = listing;
     // Ethereum constants
-    const { netId, account, balance, sendAmount, sendToAddress } = this.state;
+    const { netId, account, balance, sendAmount, sendToAddress, sending } = this.state;
     return (
       <div className="wallet">
         <div className="wallet__address-container">
@@ -95,6 +113,12 @@ export class Wallet extends Component {
             <ButtonPrimary label="Send" />
           </div>
         </form>
+        {sending && (
+          <div className="wallet__sending-cover">
+            <img className="wallet__sending-cover--logo" src={EthLogo} alt="Sending" />
+            <h3 className="wallet__sending-cover--text">Sending Ether...</h3>
+          </div>
+        )}
       </div>
     );
   }

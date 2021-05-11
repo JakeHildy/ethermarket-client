@@ -3,7 +3,7 @@
 @use './../../../styles/partials/typography' as *;
 
 .modal {
-  background-image: linear-gradient(to bottom right, rgba($color-dark-shades, 0.6), rgba($color-dark-shades, 0.8));
+  background-image: $modal-bg;
   width: 100vw;
   height: 100vh;
   position: fixed;

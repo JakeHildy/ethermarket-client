@@ -58,3 +58,7 @@ $desktop-max-width: 120rem;
 //////////////////////////////////////
 // SEPARATORS
 $separator-line: 1px solid $color-lighter-accent;
+
+///////////////////////////////
+// MODAL BACKGROUND
+$modal-bg: linear-gradient(to bottom right, rgba($color-dark-shades, 0.6), rgba($color-dark-shades, 0.8));
