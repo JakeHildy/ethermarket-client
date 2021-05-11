@@ -3,14 +3,26 @@
 @use './../../styles/partials/typography' as *;
 
 .about-page {
-  padding: $small $mobile-spacing;
+  padding: $huge $mobile-spacing;
   max-width: $desktop-max-width;
 
   @include tablet {
-    padding: $small $desktop-spacing;
+    padding: $huge $desktop-spacing;
   }
 
   @include desktop {
     margin: 0 auto;
+  }
+
+  &__title {
+    font-size: 3rem;
+    font-weight: 100;
+    margin-bottom: $large;
+  }
+
+  &__paragraph {
+    font-size: 1.7rem;
+    line-height: 1.4;
+    margin-bottom: $small;
   }
 }
