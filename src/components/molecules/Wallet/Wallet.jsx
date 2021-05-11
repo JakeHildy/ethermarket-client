@@ -73,9 +73,6 @@ export class Wallet extends Component {
   };
 
   render() {
-    // Listing
-    const { listing } = this.props;
-    const { price, listCurrency } = listing;
     // Ethereum constants
     const { netId, account, balance, sendAmount, sendToAddress, sending } = this.state;
     return (

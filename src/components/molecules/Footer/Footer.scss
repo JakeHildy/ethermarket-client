@@ -14,11 +14,25 @@
   &__title {
     color: $white;
     @include typo-heading-3;
-    margin-bottom: $tiny;
+    margin-bottom: $small;
   }
 
-  &__legal {
+  &__link {
     color: $white;
+    text-decoration: none;
+    cursor: pointer;
+    padding: $tiny $extra-small;
+    border-radius: 5px;
     @include typo-heading-5;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: lighten($color-dark-shades, 10);
+      box-shadow: $shadow-img-gallery;
+    }
+
+    &--careers {
+      margin-right: $extra-small;
+    }
   }
 }

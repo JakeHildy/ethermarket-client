@@ -5,7 +5,7 @@ import ChatHeader from './../../components/molecules/ChatHeader/ChatHeader';
 import Wallet from './../../components/molecules/Wallet/Wallet';
 import ChatBox from './../../components/molecules/ChatBox/ChatBox';
 import ButtonPrimary from './../../components/atoms/ButtonPrimary/ButtonPrimary';
-import ButtonDanger from './../../components/atoms/ButtonDanger/ButtonDanger';
+// import ButtonDanger from './../../components/atoms/ButtonDanger/ButtonDanger';
 import './ChatPage.scss';
 
 export class ChatPage extends Component {
