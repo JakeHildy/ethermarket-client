@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
 import './LoginPage.scss';
 import axios from 'axios';
 import EthereumLogo from './../../assets/images/ethereum-icon-purple.png';
@@ -58,9 +59,10 @@ export class LoginPage extends Component {
 
       this.setState({ confirmPasswordError, passwordError, emailError, usernameError }, () => {
         if (passwordError || confirmPasswordError || emailError || usernameError) return;
+        console.log(this.state.username);
         axios
           .post(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_SIGNUP_EP}`, {
-            username: this.state.username,
+            username: this.state.username.toLowerCase(),
             email: this.state.email,
             password: this.state.password,
           })
@@ -72,6 +74,7 @@ export class LoginPage extends Component {
           })
           .catch((err) => {
             console.log(`💣 === ERROR LOGGING IN === 💣`, err);
+            toast.error('Username or Password Already Taken');
           });
       });
     } else {
@@ -91,7 +94,7 @@ export class LoginPage extends Component {
         if (passwordError || usernameError) return;
         axios
           .post(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LOGIN_EP}`, {
-            username: this.state.username,
+            username: this.state.username.toLowerCase(),
             password: this.state.password,
           })
           .then((res) => {
@@ -100,10 +103,12 @@ export class LoginPage extends Component {
               sessionStorage.userId = res.data.id;
               sessionStorage.username = res.data.username;
               this.props.history.push('/home');
+              toast.success('Logged In!');
             }
           })
           .catch((err) => {
             console.log(`💣 === ERROR LOGGING IN === 💣`, err);
+            toast.error('Username or Password Incorrect');
           });
       });
     }

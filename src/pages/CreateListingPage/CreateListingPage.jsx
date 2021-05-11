@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './CreateListingPage.scss';
+import { toast } from 'react-toastify';
 import ListingForm from './../../components/molecules/ListingForm/ListingForm';
 import IconDelete from './../../components/atoms/IconDelete/IconDelete';
 import axios from 'axios';
@@ -68,9 +69,11 @@ export class CreateListingPage extends Component {
       .then((res) => {
         const id = res.data.data.listing._id;
         this.props.history.push(`/listing/${id}`);
+        toast.success('Created!');
       })
       .catch((err) => {
         console.log(`💣 === ERROR UPLOADING LISTING === 💣`, err);
+        toast.error('An Unknown Error has occured');
       });
   };
 

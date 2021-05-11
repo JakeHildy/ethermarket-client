@@ -59,7 +59,7 @@ export class ChatPage extends Component {
       });
   }
 
-  connectToEthereum = async () => {
+  connectWallet = async () => {
     // check if MetaMask exists
     if (typeof window.ethereum !== 'undefined') {
       const web3 = new Web3(window.ethereum);
@@ -96,10 +96,9 @@ export class ChatPage extends Component {
       });
   };
 
-  handleTranfer = (e) => {
+  handleConnectWallet = (e) => {
     e.preventDefault();
-    this.connectToEthereum();
-    console.log('Handle Transfer TODO');
+    this.connectWallet();
   };
 
   handleUnfollow = (e) => {
@@ -132,7 +131,7 @@ export class ChatPage extends Component {
 
           <div className="chat-page__buttons">
             <div className="chat-page__buttons--primary">
-              <ButtonPrimary label="Transfer Funds" handleClick={this.handleTranfer} />
+              <ButtonPrimary label="Connect Wallet" handleClick={this.handleConnectWallet} />
             </div>
             <div className="chat-page__buttons--secondary">
               <ButtonDanger label="UnFollow Listing" handleClick={this.handleUnfollow} />

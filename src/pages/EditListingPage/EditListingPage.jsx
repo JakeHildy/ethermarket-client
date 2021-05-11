@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './EditListingPage.scss';
 import ListingForm from './../../components/molecules/ListingForm/ListingForm';
+import { toast } from 'react-toastify';
 import Loading from './../../components/molecules/Loading/Loading';
 import IconDelete from './../../components/atoms/IconDelete/IconDelete';
 import axios from 'axios';
@@ -87,9 +88,11 @@ export class EditListingPage extends Component {
       })
       .then(() => {
         this.props.history.push(`/listing/${this.state.listing._id}`);
+        toast.success('Listing Updated!');
       })
       .catch((err) => {
         console.log(`💣 === ERROR PATCHING LISTING === 💣`, err);
+        toast.error('An Unknown Error has occured');
       });
   };
 
