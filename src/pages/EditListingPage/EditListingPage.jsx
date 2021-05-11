@@ -110,17 +110,26 @@ export class EditListingPage extends Component {
   };
 
   handleDeleteListing = (e) => {
+    const { showModal } = this.props;
     e.preventDefault();
+    showModal(`Are you sure you want to delete ${this.state.listing.title} listing?`, () => {
+      this.deleteListing();
+    });
+  };
+
+  deleteListing = () => {
     axios
       .delete(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}/${this.state.listing._id}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
       })
       .then(() => {
         this.props.history.push('/browse');
+        toast.success('Listing Deleted!');
       })
       .catch((err) => {
         console.log(`💣 === ERROR DELETING LISTING === 💣`, err);
+        toast.error('Error Deleting Listing');
       });
   };
 

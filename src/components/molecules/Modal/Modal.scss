@@ -1,0 +1,52 @@
+@use './../../../styles/partials/variables' as *;
+@use './../../../styles/partials/mixins' as *;
+@use './../../../styles/partials/typography' as *;
+
+.modal {
+  background-image: linear-gradient(to bottom right, rgba($color-dark-shades, 0.6), rgba($color-dark-shades, 0.8));
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__popup {
+    background-color: $color-page;
+    width: min(70vw, 25rem);
+    padding: $huge $medium $small $medium;
+    border-radius: 5px;
+
+    @include tablet {
+      width: 35rem;
+    }
+    @include desktop {
+      width: 40rem;
+    }
+  }
+
+  &__popup-text {
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: $huge;
+  }
+
+  &__buttons {
+    display: flex;
+
+    &--cancel {
+      width: 50%;
+      margin-right: $tiny;
+    }
+    &--action {
+      width: 50%;
+    }
+  }
+}

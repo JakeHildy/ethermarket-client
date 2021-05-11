@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NavBar from './components/molecules/NavBar/NavBar';
 import Footer from './components/molecules/Footer/Footer';
-// import Modal from './components/molecules/Modal/Modal';
+import Modal from './components/molecules/Modal/Modal';
 import BrowsePage from './pages/BrowsePage/BrowsePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import HomePage from './pages/HomePage/HomePage';
@@ -15,8 +15,18 @@ import ListingPage from './pages/ListingPage/ListingPage';
 import ChatPage from './pages/ChatPage/ChatPage';
 
 class App extends Component {
-  state = { showModal: false };
+  state = { showModal: false, modalText: '', modalCB: null };
+
+  hideModal = () => {
+    this.setState({ showModal: false });
+  };
+
+  showModal = (text, cb) => {
+    this.setState({ showModal: true, modalText: text, modalCB: cb });
+  };
+
   render() {
+    const { showModal, modalText, modalCB } = this.state;
     return (
       <div className="App">
         <Router>
@@ -27,12 +37,16 @@ class App extends Component {
             <Route path="/login" component={LoginPage} />
             <Route path="/home" component={HomePage} />
             <Route path="/create" component={CreateListingPage} />
-            <Route path="/edit/:id" component={EditListingPage} />
+            <Route
+              path="/edit/:id"
+              render={(routerProps) => <EditListingPage showModal={this.showModal} {...routerProps} />}
+            />
             <Route path="/chat/:id" component={ChatPage} />
             <Route path="/listing/:id" component={ListingPage} />
             <Redirect from="/" to="/browse" />
           </Switch>
           <Footer />
+          {showModal && <Modal hideModal={this.hideModal} text={modalText} cb={modalCB} />}
         </Router>
       </div>
     );
