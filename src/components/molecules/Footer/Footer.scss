@@ -17,6 +17,28 @@
     margin-bottom: $small;
   }
 
+  &__icon-links {
+    margin-top: $small;
+    display: flex;
+
+    &--1 {
+      margin-right: $extra-small;
+    }
+    &--2 {
+      margin-right: $extra-small;
+    }
+
+    &--1,
+    &--2,
+    &--3 {
+      cursor: pointer;
+      transition: all 0.2s;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
   &__link {
     color: $white;
     text-decoration: none;
