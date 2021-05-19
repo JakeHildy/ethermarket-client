@@ -78,9 +78,14 @@ export class CreateListingPage extends Component {
       });
   };
 
-  handleCancel = (e) => {
+  handleCancel = async (e) => {
     e.preventDefault();
-    this.props.history.goBack();
+    try {
+      await Promise.all(this.state.listing.images.map((image) => deleteImage(image)));
+      this.props.history.goBack();
+    } catch (err) {
+      console.error(`Error deleting Images on Cancel`);
+    }
   };
 
   handleDeleteImage = async (e) => {
