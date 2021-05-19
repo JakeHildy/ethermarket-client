@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import Loading from './../../components/molecules/Loading/Loading';
 import IconDelete from './../../components/atoms/IconDelete/IconDelete';
 import axios from 'axios';
+import { deleteImage } from './../../utils/imagesAPI';
 const { v4: uuidv4 } = require('uuid');
 
 export class EditListingPage extends Component {
@@ -35,17 +36,8 @@ export class EditListingPage extends Component {
 
     const LISTING_EP = `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}`;
     axios.get(`${LISTING_EP}/${this.props.match.params.id}`).then((res) => {
-      const {
-        _id,
-        title,
-        price,
-        listCurrency,
-        category,
-        condition,
-        location,
-        description,
-        images,
-      } = res.data.data.listing;
+      const { _id, title, price, listCurrency, category, condition, location, description, images } =
+        res.data.data.listing;
       this.setState({
         listing: { _id, title, price, listCurrency, category, condition, location, description, images },
         listingLoaded: true,
@@ -64,7 +56,7 @@ export class EditListingPage extends Component {
     data.append('file', this.state.selectedFile);
     axios.post(`${UPLOAD_EP}`, data).then((res) => {
       const listing = { ...this.state.listing };
-      listing.images.push(`${process.env.REACT_APP_BACKEND_EP}/${res.data.filename}`);
+      listing.images.push(`${res.data.data.Location}`);
       this.setState({
         listing,
       });
@@ -101,12 +93,17 @@ export class EditListingPage extends Component {
     this.props.history.goBack();
   };
 
-  handleDeleteImage = (e) => {
+  handleDeleteImage = async (e) => {
     e.preventDefault();
     const deleteIndex = e.target.parentElement.parentElement.dataset.index;
     const listing = { ...this.state.listing };
-    listing.images.splice(deleteIndex, 1);
+    const [imagePath] = listing.images.splice(deleteIndex, 1);
     this.setState({ listing });
+    try {
+      await deleteImage(imagePath);
+    } catch (err) {
+      console.error(`Error deleting Image`);
+    }
   };
 
   handleDeleteListing = (e) => {
@@ -117,20 +114,25 @@ export class EditListingPage extends Component {
     });
   };
 
-  deleteListing = () => {
-    axios
-      .delete(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}/${this.state.listing._id}`)
-      .then((res) => {
-        // console.log(res);
-      })
-      .then(() => {
-        this.props.history.push('/browse');
-        toast.success('Listing Deleted!');
-      })
-      .catch((err) => {
-        console.log(`💣 === ERROR DELETING LISTING === 💣`, err);
-        toast.error('Error Deleting Listing');
-      });
+  deleteListing = async () => {
+    try {
+      await Promise.all(this.state.listing.images.map((image) => deleteImage(image)));
+      axios
+        .delete(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}/${this.state.listing._id}`)
+        .then((res) => {
+          // console.log(res);
+        })
+        .then(() => {
+          this.props.history.push('/browse');
+          toast.success('Listing Deleted!');
+        })
+        .catch((err) => {
+          console.log(`💣 === ERROR DELETING LISTING === 💣`, err);
+          toast.error('Error Deleting Listing');
+        });
+    } catch (err) {
+      console.error('Error Deleting Listing', err);
+    }
   };
 
   render() {
