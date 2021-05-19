@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import ListingForm from './../../components/molecules/ListingForm/ListingForm';
 import IconDelete from './../../components/atoms/IconDelete/IconDelete';
 import axios from 'axios';
+import { deleteImage } from './../../utils/imagesAPI';
 const { v4: uuidv4 } = require('uuid');
 
 export class CreateListingPage extends Component {
@@ -86,12 +87,13 @@ export class CreateListingPage extends Component {
     e.preventDefault();
     const deleteIndex = e.target.parentElement.parentElement.dataset.index;
     const listing = { ...this.state.listing };
-    const [fullPath] = listing.images.splice(deleteIndex, 1);
-    const imageName = fullPath.split('.com/')[1];
+    const [imagePath] = listing.images.splice(deleteIndex, 1);
     this.setState({ listing });
-    const response = await axios.delete(
-      `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_UPLOAD_EP}/${imageName}`
-    );
+    try {
+      await deleteImage(imagePath);
+    } catch (err) {
+      console.error(`Error deleting Image`);
+    }
   };
 
   render() {

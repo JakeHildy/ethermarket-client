@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import Loading from './../../components/molecules/Loading/Loading';
 import IconDelete from './../../components/atoms/IconDelete/IconDelete';
 import axios from 'axios';
+import { deleteImage } from './../../utils/imagesAPI';
 const { v4: uuidv4 } = require('uuid');
 
 export class EditListingPage extends Component {
@@ -96,12 +97,13 @@ export class EditListingPage extends Component {
     e.preventDefault();
     const deleteIndex = e.target.parentElement.parentElement.dataset.index;
     const listing = { ...this.state.listing };
-    const [fullPath] = listing.images.splice(deleteIndex, 1);
-    const imageName = fullPath.split('.com/')[1];
+    const [imagePath] = listing.images.splice(deleteIndex, 1);
     this.setState({ listing });
-    const response = await axios.delete(
-      `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_UPLOAD_EP}/${imageName}`
-    );
+    try {
+      await deleteImage(imagePath);
+    } catch (err) {
+      console.error(`Error deleting Image`);
+    }
   };
 
   handleDeleteListing = (e) => {
@@ -112,20 +114,25 @@ export class EditListingPage extends Component {
     });
   };
 
-  deleteListing = () => {
-    axios
-      .delete(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}/${this.state.listing._id}`)
-      .then((res) => {
-        // console.log(res);
-      })
-      .then(() => {
-        this.props.history.push('/browse');
-        toast.success('Listing Deleted!');
-      })
-      .catch((err) => {
-        console.log(`💣 === ERROR DELETING LISTING === 💣`, err);
-        toast.error('Error Deleting Listing');
-      });
+  deleteListing = async () => {
+    try {
+      await Promise.all(this.state.listing.images.map((image) => deleteImage(image)));
+      axios
+        .delete(`${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}/${this.state.listing._id}`)
+        .then((res) => {
+          // console.log(res);
+        })
+        .then(() => {
+          this.props.history.push('/browse');
+          toast.success('Listing Deleted!');
+        })
+        .catch((err) => {
+          console.log(`💣 === ERROR DELETING LISTING === 💣`, err);
+          toast.error('Error Deleting Listing');
+        });
+    } catch (err) {
+      console.error('Error Deleting Listing', err);
+    }
   };
 
   render() {
