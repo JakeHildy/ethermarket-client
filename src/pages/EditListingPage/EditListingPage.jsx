@@ -35,17 +35,8 @@ export class EditListingPage extends Component {
 
     const LISTING_EP = `${process.env.REACT_APP_BACKEND_EP}${process.env.REACT_APP_LISTINGS_EP}`;
     axios.get(`${LISTING_EP}/${this.props.match.params.id}`).then((res) => {
-      const {
-        _id,
-        title,
-        price,
-        listCurrency,
-        category,
-        condition,
-        location,
-        description,
-        images,
-      } = res.data.data.listing;
+      const { _id, title, price, listCurrency, category, condition, location, description, images } =
+        res.data.data.listing;
       this.setState({
         listing: { _id, title, price, listCurrency, category, condition, location, description, images },
         listingLoaded: true,
@@ -64,7 +55,7 @@ export class EditListingPage extends Component {
     data.append('file', this.state.selectedFile);
     axios.post(`${UPLOAD_EP}`, data).then((res) => {
       const listing = { ...this.state.listing };
-      listing.images.push(`${process.env.REACT_APP_BACKEND_EP}/${res.data.filename}`);
+      listing.images.push(`${res.data.data.Location}`);
       this.setState({
         listing,
       });

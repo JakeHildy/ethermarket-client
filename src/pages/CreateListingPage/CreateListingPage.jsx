@@ -43,7 +43,7 @@ export class CreateListingPage extends Component {
     data.append('file', this.state.selectedFile);
     axios.post(`${UPLOAD_EP}`, data).then((res) => {
       const listing = { ...this.state.listing };
-      listing.images.push(`${process.env.REACT_APP_BACKEND_EP}/${res.data.filename}`);
+      listing.images.push(`${res.data.data.Location}`);
       this.setState({
         listing,
       });
